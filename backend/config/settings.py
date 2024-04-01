@@ -1,5 +1,7 @@
 import os
 
+import sentry_sdk
+
 from pathlib import Path
 from dotenv import load_dotenv
 
@@ -7,12 +9,13 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv('SECRET_KEY')
+SENTRY_DSN = os.getenv('SENTRY_DSN')
 SITE_URL = os.getenv('SITE_URL')
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = ['localhost:4200']
+CSRF_TRUSTED_ORIGINS = ['http://localhost:4200']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -116,3 +119,15 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+sentry_sdk.init(
+    dsn=SENTRY_DSN,
+    # Set traces_sample_rate to 1.0 to capture 100%
+    # of transactions for performance monitoring.
+    traces_sample_rate=1.0,
+    # Set profiles_sample_rate to 1.0 to profile 100%
+    # of sampled transactions.
+    # We recommend adjusting this value in production.
+    profiles_sample_rate=1.0,
+)
