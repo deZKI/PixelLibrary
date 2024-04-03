@@ -12,7 +12,7 @@ from rest_framework import permissions
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="Connect3 Swagger",
+        title="PixelLibrary Swagger",
         default_version='v1',
         description="Документация к api PixelLibrary",
     ),
