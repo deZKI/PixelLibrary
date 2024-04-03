@@ -11,11 +11,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 SENTRY_DSN = os.getenv('SENTRY_DSN')
 SITE_URL = os.getenv('SITE_URL')
-
-DEBUG = True
-
+REDIS_HOST = os.getenv('REDIS_HOST')
+REDIS_PORT = os.getenv('REDIS_PORT')
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = ['http://localhost:4200']
+
+DEBUG = False
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -50,8 +51,7 @@ ADMIN_REORDER = (
     'sites',
 
     {'app': 'users', 'label': 'Пользователи',
-     'models': (
-     ),
+     'models': (),
      }
 )
 
@@ -131,3 +131,13 @@ sentry_sdk.init(
     # We recommend adjusting this value in production.
     profiles_sample_rate=1.0,
 )
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": f"redis://{REDIS_HOST}:{REDIS_PORT}/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}
