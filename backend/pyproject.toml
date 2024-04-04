@@ -17,7 +17,6 @@ factory-boy = "^3.3.0"
 pillow = "^10.2.0"
 djangorestframework = "^3.15.0"
 drf-yasg = {extras = ["validation"], version = "^1.21.7"}
-django-modeladmin-reorder = "^0.3.1"
 setuptools = "^69.2.0"
 qrcode = "^7.4.2"
 sentry-sdk = {extras = ["django"], version = "^1.44.0"}
@@ -25,6 +24,7 @@ django-redis = "^5.4.0"
 django-debug-toolbar = "^4.3.0"
 celery = "^5.3.6"
 gevent = "^24.2.1"
+django-modeladmin-reorder = "^0.3.1"
 
 
 [build-system]

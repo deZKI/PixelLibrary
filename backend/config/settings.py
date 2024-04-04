@@ -18,7 +18,6 @@ ALLOWED_HOSTS = ["*"]
 
 DEBUG = False
 
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -32,6 +31,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'drf_yasg',
 
+    'users',
+    'books',
+    'authors'
 ]
 
 MIDDLEWARE = [
@@ -51,9 +53,28 @@ ROOT_URLCONF = 'config.urls'
 ADMIN_REORDER = (
     'sites',
 
-    {'app': 'users', 'label': 'Пользователи',
-     'models': (),
-     }
+    {
+        'app': 'users', 'label': 'Users',
+        'models': (
+            'users.Users',
+
+        ),
+    },
+    {
+        'app': 'books', 'label': 'Books',
+        'models': (
+            'books.Books',
+            'books.Tags',
+            'users.BookComment'
+        ),
+    },
+    {
+        'app': 'authors', 'label': 'Authors',
+        'models': (
+            'authors.Authors',
+            'users.AuthorComment'
+        ),
+    }
 )
 
 TEMPLATES = [
@@ -105,7 +126,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LANGUAGE_CODE = 'ru-RU'
+LANGUAGE_CODE = 'en-En'
 
 TIME_ZONE = 'UTC'
 
@@ -121,7 +142,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
 sentry_sdk.init(
     dsn=SENTRY_DSN,
     # Set traces_sample_rate to 1.0 to capture 100%
@@ -132,6 +152,11 @@ sentry_sdk.init(
     # We recommend adjusting this value in production.
     profiles_sample_rate=1.0,
 )
+
+AUTH_USER_MODEL = 'users.Users'
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 CACHES = {
     "default": {
@@ -144,7 +169,7 @@ CACHES = {
 }
 
 RABBITMQ = {
-    "PROTOCOL": "amqp", # in prod change with "amqps"
+    "PROTOCOL": "amqp",  # in prod change with "amqps"
     "HOST": os.getenv("RABBITMQ_HOST", "localhost"),
     "PORT": os.getenv("RABBITMQ_PORT", 5672),
     "USER": os.getenv("RABBITMQ_USER", "guest"),

@@ -1,0 +1,29 @@
+from django.db import models
+
+from authors.models import Authors
+
+
+class Tags(models.Model):
+    name = models.CharField(max_length=20, unique=True)
+
+    class Meta:
+        verbose_name = 'Tag'
+        verbose_name_plural = "Tags"
+
+    def __str__(self):
+        return self.name
+
+
+class Books(models.Model):
+    title = models.CharField(max_length=255, null=False, blank=False)
+    description = models.TextField(null=False, blank=False)
+
+    thumbnail = models.ImageField(upload_to='images/books/thumbnail/', null=False, blank=False)
+
+    authors = models.ManyToManyField(to=Authors, related_name='books')
+    tags = models.ManyToManyField(to=Tags, related_name='books')
+    release_date = models.DateField(null=False, blank=False)
+
+    class Meta:
+        verbose_name = 'Book'
+        verbose_name_plural = 'Books'
