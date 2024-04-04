@@ -55,15 +55,18 @@ services:
       - POSTGRES_HOST=db
       - REDIS_HOST=redis
       - RABBITMQ_HOST=rabbitmq
+    restart: always
   redis:
     image: redis:alpine
     ports:
       - "6379"
+    restart: always
 
   rabbitmq:
      image: rabbitmq:3-management-alpine
      ports:
        - "5672"
+     restart: always
 
 volumes:
   postgres_data:
