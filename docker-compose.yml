@@ -6,14 +6,19 @@ services:
     volumes:
       - static_volume:/app/static/
       - media_volume:/app/media/
+    entrypoint: ["sh", "entrypoint.sh"]
     ports:
-      - "8000:8000"
+      - "8000"
     env_file:
       - .env
     depends_on:
       - db
+      - redis
+      - rabbitmq
     environment:
       - POSTGRES_HOST=db
+      - REDIS_HOST=redis
+      - RABBITMQ_HOST=rabbitmq
 
   telegram_bot:
     build: telegram_bot
@@ -39,6 +44,26 @@ services:
       - media_volume:/app/media
     depends_on:
       - web
+
+  celery:
+    build: backend
+    depends_on:
+      - web
+      - rabbitmq
+    command: celery -A config worker --concurrency=4 --loglevel=info  -P gevent
+    environment:
+      - POSTGRES_HOST=db
+      - REDIS_HOST=redis
+      - RABBITMQ_HOST=rabbitmq
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379"
+
+  rabbitmq:
+     image: rabbitmq:3-management-alpine
+     ports:
+       - "5672"
 
 volumes:
   postgres_data:

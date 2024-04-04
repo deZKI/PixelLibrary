@@ -23,6 +23,8 @@ qrcode = "^7.4.2"
 sentry-sdk = {extras = ["django"], version = "^1.44.0"}
 django-redis = "^5.4.0"
 django-debug-toolbar = "^4.3.0"
+celery = "^5.3.6"
+gevent = "^24.2.1"
 
 
 [build-system]

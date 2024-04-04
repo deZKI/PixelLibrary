@@ -13,6 +13,7 @@ SENTRY_DSN = os.getenv('SENTRY_DSN')
 SITE_URL = os.getenv('SITE_URL')
 REDIS_HOST = os.getenv('REDIS_HOST')
 REDIS_PORT = os.getenv('REDIS_PORT')
+AMPQ = os.getenv('AMPQ')
 ALLOWED_HOSTS = ["*"]
 
 DEBUG = False
@@ -141,3 +142,13 @@ CACHES = {
         }
     }
 }
+
+RABBITMQ = {
+    "PROTOCOL": "amqp", # in prod change with "amqps"
+    "HOST": os.getenv("RABBITMQ_HOST", "localhost"),
+    "PORT": os.getenv("RABBITMQ_PORT", 5672),
+    "USER": os.getenv("RABBITMQ_USER", "guest"),
+    "PASSWORD": os.getenv("RABBITMQ_PASSWORD", "guest"),
+}
+
+CELERY_BROKER_URL = f"{RABBITMQ['PROTOCOL']}://{RABBITMQ['USER']}:{RABBITMQ['PASSWORD']}@{RABBITMQ['HOST']}:{RABBITMQ['PORT']}"

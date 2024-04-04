@@ -20,6 +20,3 @@ RUN poetry install --no-interaction --no-ansi
 
 # Делаем entrypoint скрипт исполняемым
 RUN chmod +x entrypoint.sh
-
-# Установка entrypoint
-ENTRYPOINT ["sh", "entrypoint.sh"]
