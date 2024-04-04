@@ -2,3 +2,4 @@
 .env
 backend/.idea
 nginx/certs
+__pycache__
