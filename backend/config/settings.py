@@ -1,8 +1,7 @@
 import os
+from pathlib import Path
 
 import sentry_sdk
-
-from pathlib import Path
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -27,7 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'admin_reorder',  # Переопределение списка админки
-
+    'guardian',  # Система прав
     'rest_framework',
     'drf_yasg',
 
@@ -35,6 +34,11 @@ INSTALLED_APPS = [
     'books',
     'authors'
 ]
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',  # Default
+    'guardian.backends.ObjectPermissionBackend',
+)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

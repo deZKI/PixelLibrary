@@ -1,8 +1,7 @@
 from django.contrib import admin
-
-from users.models import Users, BookComment, AuthComment
-
 from django.contrib.auth.models import Group
+
+from users.models import AuthComment, BookComment, Users
 
 admin.site.unregister(Group)
 

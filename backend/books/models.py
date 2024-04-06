@@ -19,7 +19,7 @@ class Books(models.Model):
     description = models.TextField(null=False, blank=False)
 
     thumbnail = models.ImageField(upload_to='images/books/thumbnail/', null=False, blank=False)
-
+    file = models.FileField(upload_to='books/', null=True, blank=True)
     authors = models.ManyToManyField(to=Authors, related_name='books')
     tags = models.ManyToManyField(to=Tags, related_name='books')
     release_date = models.DateField(null=False, blank=False)
@@ -27,3 +27,6 @@ class Books(models.Model):
     class Meta:
         verbose_name = 'Book'
         verbose_name_plural = 'Books'
+        permissions = (
+            ('view', 'User can view file of book'),
+        )

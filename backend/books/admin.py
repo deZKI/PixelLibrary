@@ -1,10 +1,11 @@
 from django.contrib import admin
+from guardian.admin import GuardedModelAdmin
 
 from books.models import Books, Tags
 
 
 @admin.register(Books)
-class BooksAdmin(admin.ModelAdmin):
+class BooksAdmin(GuardedModelAdmin):
     pass
 
 
