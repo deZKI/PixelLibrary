@@ -14,6 +14,9 @@ python manage.py migrate --noinput
 # Сбор статических файлов
 python manage.py collectstatic --noinput --clear
 
+# fixtures users
+python manage.py loaddata fixtures/users.json
+
 # Запуск Gunicorn или любого другого WSGI сервера, который вы используете
 gunicorn config.wsgi:application --bind 0.0.0.0:8000 --workers=7
 # Start server

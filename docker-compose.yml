@@ -51,6 +51,8 @@ services:
       - web
       - rabbitmq
     command: celery -A config worker --concurrency=4 --loglevel=info  -P gevent
+    env_file:
+      - .env
     environment:
       - POSTGRES_HOST=db
       - REDIS_HOST=redis
