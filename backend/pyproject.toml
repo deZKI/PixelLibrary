@@ -26,6 +26,7 @@ celery = "^5.3.6"
 gevent = "^24.2.1"
 django-modeladmin-reorder = "^0.3.1"
 django-guardian = "^2.4.0"
+djangorestframework-simplejwt = "^5.3.1"
 
 
 [build-system]
