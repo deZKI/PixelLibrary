@@ -10,13 +10,13 @@ from .types import PermissionType
 class BookPermissionsService(AbstractPermissionsService):
 
     @staticmethod
-    def has_permission(obj: Books, user: Users, perm: PermissionType):
-        user.has_perm(perm=perm, obj=obj)
+    def has_permission(obj: Books, user: Users, perm: PermissionType) -> bool:
+        return user.has_perm(perm=perm, obj=obj)
 
     @staticmethod
-    def assign_permission(obj: Books, user: Users, perm: PermissionType):
+    def assign_permission(obj: Books, user: Users, perm: PermissionType) -> None:
         assign_perm(perm, user, obj)
 
     @staticmethod
-    def remove_permission(obj: Books, user: Users, perm: PermissionType):
+    def remove_permission(obj: Books, user: Users, perm: PermissionType) -> None:
         remove_perm(perm, user, obj)
