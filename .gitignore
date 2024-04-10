@@ -1,5 +1,5 @@
 .idea
 .env
-backend/.idea
+core/.idea
 nginx/certs
 __pycache__
