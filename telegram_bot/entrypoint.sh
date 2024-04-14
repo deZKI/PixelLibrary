@@ -2,7 +2,7 @@
 
 # Проверка на доступность django
 echo "Waiting for web server..."
-while ! nc -z web 8000; do
+while ! nc -z core 8000; do
   sleep 0.1
 done
 echo "Web server started"
