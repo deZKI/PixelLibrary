@@ -15,6 +15,8 @@ REDIS_HOST = os.getenv('REDIS_HOST')
 REDIS_PORT = os.getenv('REDIS_PORT')
 AMPQ = os.getenv('AMPQ')
 ALLOWED_HOSTS = ["*"]
+CSRF_TRUSTED_ORIGINS = ['http://localhost:4200']
+CORS_ALLOWED_ORIGINS = ['http://localhost:4200']
 
 DEBUG = False
 
@@ -30,6 +32,7 @@ INSTALLED_APPS = [
     'guardian',  # Система прав
     'rest_framework',
     'drf_yasg',
+    'corsheaders',
 
     'users',
     'books',
