@@ -1,0 +1,36 @@
+.nav-bar {
+  display: flex;
+  flex-direction: row;
+
+  justify-content: center;
+
+  width: 100%;
+  background: #f6f6ff;
+
+  &__logo {
+    width: 100px;
+    height: 65px;
+  }
+}
+
+.nav-bar-main {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.nav-bar-search {
+  display: flex;
+  flex-direction: row;
+
+  &__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #2F3A56;
+    width: 22px;
+    height: 22px;
+    border-radius: 10px;
+  }
+}
