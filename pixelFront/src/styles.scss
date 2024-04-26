@@ -1,0 +1,13 @@
+body {
+  margin: 0;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.pixel__mat-button {
+  padding: 12px;
+  box-sizing: border-box;
+  border: 3px solid rgb(47, 58, 86);
+  border-radius: 10px;
+}
