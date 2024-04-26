@@ -114,7 +114,7 @@ DATABASES = {
         "PORT": os.getenv('POSTGRES_PORT'),
         "TEST": {
             'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': 'mydatabase'
+            'NAME': 'mydatabase2'
         }
     }
 }

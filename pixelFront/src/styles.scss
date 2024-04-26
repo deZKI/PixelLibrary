@@ -1,0 +1,33 @@
+body {
+  margin: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.pixel__mat-button {
+  background: none;
+  padding: 6px;
+  box-sizing: border-box;
+  border: 3px solid rgb(47, 58, 86);
+  border-radius: 10px;
+}
+
+.pixel__mat-icon {
+  cursor: pointer;
+  width: 44px !important;
+  height: 44px !important;
+}
+
+.pixel__mat-icon__logo {
+  mat-icon {
+    width: 60px;
+    height: 45px;
+  }
+}

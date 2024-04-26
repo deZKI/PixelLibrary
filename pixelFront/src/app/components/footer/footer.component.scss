@@ -1,0 +1,17 @@
+.footer {
+  background: #2F3A56;
+  color: #ffffff; /* Цвет текста */
+  padding: 20px 0; /* Отступы */
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  &__icon {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+  }
+
+}
