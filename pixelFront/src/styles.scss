@@ -2,8 +2,14 @@ body {
   margin: 0;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 .pixel__mat-button {
   background: none;
@@ -15,6 +21,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .pixel__mat-icon {
   cursor: pointer;
-  width: 44px!important;
-  height: 44px!important;
+  width: 44px !important;
+  height: 44px !important;
+}
+
+.pixel__mat-icon__logo {
+  mat-icon {
+    width: 60px;
+    height: 45px;
+  }
 }

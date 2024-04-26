@@ -41,6 +41,9 @@ export class AppComponent {
     ).addSvgIcon(
       `profile`,
       this.domSanitizer.bypassSecurityTrustResourceUrl("/assets/icons/profile.svg")
+    ).addSvgIcon(
+      `pixel-logo-white`,
+      this.domSanitizer.bypassSecurityTrustResourceUrl("/assets/icons/pixel-logo-white.svg")
     )
   }
 }

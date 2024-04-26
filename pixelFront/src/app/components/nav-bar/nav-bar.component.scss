@@ -1,5 +1,5 @@
 .navbar {
-  max-height: 140px;
+  min-height: 140px;
   background-color: #F6F6FF;
   width: 100%;
 
@@ -9,12 +9,6 @@
   align-items: center;
   gap: 42px;
 
-  &__icon {
-    mat-icon {
-      width: 60px;
-      height: 45px;
-    }
-  }
 }
 
 .navbar-search {
