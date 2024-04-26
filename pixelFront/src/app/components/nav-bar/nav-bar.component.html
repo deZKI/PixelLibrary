@@ -1,14 +1,52 @@
-<div class="nav-bar">
+<div class="navbar">
 
-  <div class="nav-bar__icon">
-    <mat-icon [svgIcon]="'pixel-logo'" sw></mat-icon>
+  <div class="navbar__icon">
+    <mat-icon [svgIcon]="'pixel-logo'"></mat-icon>
   </div>
 
-  <div class="nav-bar__search">
-    <input class="pixel__mat" type="text">
-    <button mat-button class="pixel__mat-button">
-      <mat-icon [svgIcon]="'search-loupe'"></mat-icon>
-    </button>
+  <div class="d-flex flex-column" style="gap: 9px; margin-right: 200px">
+    <div class="navbar-search">
+      <input class="pixel__mat-button navbar-search__input" type="text">
+      <mat-icon class="pixel__mat-icon" [svgIcon]="'search-loupe'"></mat-icon>
+    </div>
+    <div class="navbar-items">
+      <button class="pixel__mat-button navbar-items__item">Новинки</button>
+      <button class="pixel__mat-button navbar-items__item">Популярное</button>
+      <button class="pixel__mat-button navbar-items__item">Подборки</button>
+      <button class="pixel__mat-button navbar-items__item">Подписка</button>
+      <button class="pixel__mat-button navbar-items__item">Бесплатно</button>
+      <button class="pixel__mat-button navbar-items__item"
+              style="
+              background: linear-gradient(180.00deg, rgb(226, 71, 75),rgb(47, 58, 86) 100%);
+               color: rgb(246, 246, 255);">Каталог
+      </button>
+    </div>
+
   </div>
+
+
+  <div class="navbar-icons">
+    <div class="navbar-icons__icon">
+      <mat-icon class="pixel__mat-icon" [svgIcon]="'bookmark'"></mat-icon>
+      <div>Закладки</div>
+    </div>
+
+    <div class="navbar-icons__icon">
+      <mat-icon class="pixel__mat-icon" [svgIcon]="'favorite'"></mat-icon>
+      <div>Мои книги</div>
+    </div>
+
+    <div class="navbar-icons__icon">
+      <mat-icon class="pixel__mat-icon" [svgIcon]="'basket'"></mat-icon>
+      <div>Корзина</div>
+    </div>
+
+    <div class="navbar-icons__icon">
+      <mat-icon class="pixel__mat-icon" [svgIcon]="'profile'"></mat-icon>
+      <div>Профиль</div>
+    </div>
+
+  </div>
+
 
 </div>

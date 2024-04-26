@@ -29,6 +29,18 @@ export class AppComponent {
     ).addSvgIcon(
       `search-loupe`,
       this.domSanitizer.bypassSecurityTrustResourceUrl("/assets/icons/search-loupe.svg")
+    ).addSvgIcon(
+      `basket`,
+      this.domSanitizer.bypassSecurityTrustResourceUrl("/assets/icons/basket.svg")
+    ).addSvgIcon(
+      `bookmark`,
+      this.domSanitizer.bypassSecurityTrustResourceUrl("/assets/icons/bookmark.svg")
+    ).addSvgIcon(
+      `favorite`,
+      this.domSanitizer.bypassSecurityTrustResourceUrl("/assets/icons/favorite.svg")
+    ).addSvgIcon(
+      `profile`,
+      this.domSanitizer.bypassSecurityTrustResourceUrl("/assets/icons/profile.svg")
     )
   }
 }
