@@ -12,6 +12,7 @@ from rest_framework_simplejwt.views import (
 )
 
 from books.views import BooksViewSet, TagsViewSet
+from users.views import UserRegistrationAPIView
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -37,6 +38,7 @@ urlpatterns = [
     path('api/auth/login/', TokenObtainPairView.as_view(), name='login'),
     path('api/auth/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/auth/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
+    path('api/auth/register/', UserRegistrationAPIView.as_view(), name='user-registration'),
 ]
 
 if settings.DEBUG:
