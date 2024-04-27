@@ -15,3 +15,4 @@ INTERNAL_IPS = [
 ]
 
 CSRF_TRUSTED_ORIGINS = ['http://localhost:4200']
+CORS_ALLOWED_ORIGINS = ['http://localhost:4200']
