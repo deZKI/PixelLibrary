@@ -39,6 +39,9 @@ export class AppComponent {
     ).addSvgIcon(
       `pixel-logo-white`,
       this.domSanitizer.bypassSecurityTrustResourceUrl("/assets/icons/pixel-logo-white.svg")
+    ).addSvgIcon(
+      `star`,
+      this.domSanitizer.bypassSecurityTrustResourceUrl("/assets/icons/star.svg")
     )
   }
 }

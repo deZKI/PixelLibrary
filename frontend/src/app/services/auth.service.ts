@@ -1,34 +1,71 @@
-import {HttpClient} from "@angular/common/http";
-import {authForm, TokenAccess, TokenPairObtain, TokenRefresh} from "../interfaces/auth.interfaces";
-import {Observable} from "rxjs";
-import {Email} from "../interfaces/shared.interfaces";
-import {environment} from "../../enviroments/environment";
-import {Injectable} from "@angular/core";
-
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import {environment} from "../../environments/environment";
+import {AuthResponse} from "../shared/models/auth";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class AuthService {
+  private apiUrl = `${environment.apiUrl}/auth`
+  private accessTokenKey = 'access';
+  private refreshTokenKey = 'refresh';
 
-  registrationURL = 'auth/registration'
-  loginURL = 'auth/login'
-  refreshURL = 'token/refresh'
+  constructor(private http: HttpClient) {}
 
-  constructor(
-    private http: HttpClient
-  ) {
+  login(email: string, password: string): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(`${this.apiUrl}/login/`, { email, password })
+      .pipe(
+        tap(response => {
+          this.saveTokens(response.access, response.refresh);
+        })
+      );
   }
 
-  registration(authForm: authForm): Observable<Email> {
-    return this.http.post<Email>(`${environment.url}/${environment.api}/${this.registrationURL}/`, authForm)
+  register(email: string, password: string): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(`${this.apiUrl}/registration/`, { email, password })
+      .pipe(
+        tap(response => {
+          this.saveTokens(response.access, response.refresh);
+        })
+      );
   }
 
-  login(authForm: authForm): Observable<TokenPairObtain> {
-    return this.http.post<TokenPairObtain>(`${environment.url}/${environment.api}/${this.loginURL}/`, authForm)
+  refreshAccessToken(): Observable<AuthResponse> {
+    const refreshToken = this.getRefreshToken();
+    if (!refreshToken) {
+      return throwError('No refresh token found');
+    }
+
+    return this.http.post<AuthResponse>(`${this.apiUrl}/token/refresh/`, { refreshToken })
+      .pipe(
+        tap(response => {
+          this.saveTokens(response.access, response.refresh);
+        })
+      );
   }
 
-  refresh(refreshToken: TokenRefresh) {
-    return this.http.post<TokenAccess>(`${environment.url}/${environment.api}/${this.refreshURL}/`, refreshToken)
+  private saveTokens(accessToken: string, refreshToken: string): void {
+    localStorage.setItem(this.accessTokenKey, accessToken);
+    localStorage.setItem(this.refreshTokenKey, refreshToken);
+  }
+
+  getAccessToken(): string | null {
+    return localStorage.getItem(this.accessTokenKey);
+  }
+
+  getRefreshToken(): string | null {
+    return localStorage.getItem(this.refreshTokenKey);
+  }
+
+  logout(): void {
+    localStorage.removeItem(this.accessTokenKey);
+    localStorage.removeItem(this.refreshTokenKey);
+  }
+
+  isAuthenticated(): boolean {
+    return this.getAccessToken() !== null;
   }
 }

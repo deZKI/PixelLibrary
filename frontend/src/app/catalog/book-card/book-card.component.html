@@ -1,0 +1,19 @@
+<div class="book-card">
+  <div class="book-card__image">
+    <img [src]="book.thumbnail">
+  </div>
+
+  <div class="book-card__title">
+    {{book.title}}
+  </div>
+
+  <div class="book-card__authors">
+    {{book.authors[0].name}}
+  </div>
+
+  <div class="book-card__rating">
+    <span class="book-card__rating-text">{{book.rating}}</span>
+    <mat-icon svgIcon="star"></mat-icon>
+  </div>
+
+</div>
