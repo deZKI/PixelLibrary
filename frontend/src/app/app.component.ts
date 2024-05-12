@@ -42,6 +42,9 @@ export class AppComponent {
     ).addSvgIcon(
       `star`,
       this.domSanitizer.bypassSecurityTrustResourceUrl("/assets/icons/star.svg")
+    ).addSvgIcon(
+      `xmark`,
+      this.domSanitizer.bypassSecurityTrustResourceUrl("/assets/icons/xmark.svg")
     )
   }
 }

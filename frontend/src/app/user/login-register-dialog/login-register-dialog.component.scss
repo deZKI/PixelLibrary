@@ -1,0 +1,80 @@
+.login-register {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 42px;
+  gap: 24px;
+  background: rgb(217, 217, 217);
+  font-family: Nunito, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: 0;
+
+  &-header {
+    h1 {
+      font-weight: 700;
+    }
+  }
+
+  &__xmark {
+    position: absolute;
+    right: 42px;
+    top: 35px;
+
+    mat-icon {
+      width: 15px
+    }
+  }
+
+  &-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    &__input {
+      box-sizing: border-box;
+      border: 3px solid rgb(47, 58, 86);
+      border-radius: 10px;
+      padding: 12px;
+      width: 100%;
+    }
+  }
+
+  &-lines {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    &__line {
+      border: 1px solid rgba(47, 58, 86, 0.5);
+      width: 30%;
+    }
+  }
+
+  &-utils {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  &__button {
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding: 12px;
+    width: 100%;
+
+    &__login {
+      background: linear-gradient(180.00deg, rgb(226, 71, 75),rgb(47, 58, 86) 100%);
+      color: rgb(246, 246, 255);
+      text-align: center;
+    }
+
+    &__utils {
+      box-sizing: border-box;
+      border: 3px solid rgb(47, 58, 86);
+      border-radius: 10px;
+      color: rgb(47, 58, 86);
+    }
+  }
+}

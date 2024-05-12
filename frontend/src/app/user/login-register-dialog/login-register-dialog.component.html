@@ -1,0 +1,42 @@
+<div class="login-register">
+  <div class="login-register-header">
+    <h1 *ngIf="isLoginMode">Войти в аккаунт</h1>
+    <h1 *ngIf="!isLoginMode">Регистрация</h1>
+    <div class="login-register__xmark">
+      <mat-icon svgIcon="xmark"></mat-icon>
+    </div>
+  </div>
+
+  <div class="login-register-inputs">
+    <input class="login-register-inputs__input" name="email" [(ngModel)]="email" placeholder="Почта" required>
+    <input class="login-register-inputs__input" type="password" [(ngModel)]="password" placeholder="Пароль" required>
+
+    <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+    <button class="login-register__button login-register__button__login" *ngIf="isLoginMode" (click)="onSubmit()">
+      Продолжить
+    </button>
+    <button class="login-register__button login-register__button__login" *ngIf="!isLoginMode" (click)="onSubmit()">
+      Создать аккаунт
+    </button>
+  </div>
+
+  <div class="login-register-lines">
+    <div class="login-register-lines__line"></div>
+    <div class="login-register-lines__line"></div>
+  </div>
+
+  <div class="login-register-utils">
+    <button class="login-register__button login-register__button__utils" *ngIf="isLoginMode" (click)="changeMode()">
+      Зарегистрироваться
+    </button>
+
+    <!-- FIXME ДОБАВИТЬ ВОЗМОЖНОСТЬ СБРОСА ПАРОЛЯ-->
+    <!-- <button class="login-register__button login-register__button__utils" *ngIf="isLoginMode">Востановить пароль</button> -->
+
+    <button class="login-register__button login-register__button__utils" *ngIf="!isLoginMode" (click)="changeMode()">
+      Войти в аккаунт
+    </button>
+  </div>
+</div>
+

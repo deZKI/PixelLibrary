@@ -15,7 +15,7 @@
       <button class="pixel__mat-button navbar-items__item">Подборки</button>
       <button class="pixel__mat-button navbar-items__item">Подписка</button>
       <button class="pixel__mat-button navbar-items__item">Бесплатно</button>
-      <button class="pixel__mat-button navbar-items__item"
+      <button [routerLink]="''" class="pixel__mat-button navbar-items__item"
               style="background: linear-gradient(180.00deg, rgb(226, 71, 75),rgb(47, 58, 86) 100%); color: rgb(246, 246, 255); ">Каталог
       </button>
     </div>
@@ -39,7 +39,7 @@
       <div>Корзина</div>
     </div>
 
-    <div class="navbar-icons__icon">
+    <div [routerLink]="'user'" class="navbar-icons__icon">
       <mat-icon class="pixel__mat-icon" [svgIcon]="'profile'"></mat-icon>
       <div>Профиль</div>
     </div>

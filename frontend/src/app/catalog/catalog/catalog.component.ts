@@ -19,7 +19,6 @@ export class CatalogComponent implements OnInit {
       take(1),
       tap(books => {
         this.books = books
-        this.books = this.books.concat(books)
       })
     ).subscribe()
   }
