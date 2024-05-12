@@ -5,6 +5,7 @@ import { CatalogComponent } from './catalog/catalog.component';
 import {CatalogRoutingModule} from "./catalog-routing.module";
 import {MatIcon} from "@angular/material/icon";
 import { BookListComponent } from './book-list/book-list.component';
+import { BookComponent } from './book/book.component';
 
 
 
@@ -12,7 +13,8 @@ import { BookListComponent } from './book-list/book-list.component';
   declarations: [
     BookCardComponent,
     CatalogComponent,
-    BookListComponent
+    BookListComponent,
+    BookComponent
   ],
   imports: [
     CommonModule,
