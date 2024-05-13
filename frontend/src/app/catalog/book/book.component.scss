@@ -1,6 +1,4 @@
 .book {
-  margin-top: 100px;
-  margin-bottom: 24px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -11,7 +9,7 @@
   letter-spacing: 0;
 
   &-image {
-    max-width: 320px;
+    width: 320px;
 
     img {
       width: 100%;

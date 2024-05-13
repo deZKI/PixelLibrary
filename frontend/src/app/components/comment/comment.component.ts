@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {CommentBase} from "../../shared/interfaces/comment.interfaces";
-import {DatePipe, NgIf} from "@angular/common";
+import {DatePipe, NgForOf, NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-comment',
@@ -8,7 +8,8 @@ import {DatePipe, NgIf} from "@angular/common";
   styleUrl: './comment.component.scss',
   imports: [
     NgIf,
-    DatePipe
+    DatePipe,
+    NgForOf
   ],
   standalone: true
 })

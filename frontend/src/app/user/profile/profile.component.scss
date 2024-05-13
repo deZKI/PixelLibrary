@@ -1,0 +1,31 @@
+.profile {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.profile-routes {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 20px;
+  border-radius: 16px;
+  background: rgba(246, 246, 255, 0.5);
+
+  &__route {
+    color: rgba(47, 58, 86, 0.5);
+    font-family: Nunito, sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 33px;
+    letter-spacing: 0;
+    text-align: left;
+    text-decoration: none;
+
+    &__active-link {
+      color: rgb(47, 58, 86);
+    }
+
+  }
+}

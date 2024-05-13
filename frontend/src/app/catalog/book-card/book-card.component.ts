@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Book} from "../../shared/interfaces/book.interfaces";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-book-card',
@@ -9,7 +9,7 @@ import {Router} from "@angular/router";
 })
 export class BookCardComponent implements OnInit {
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private route: ActivatedRoute) {
   }
 
   @Input() book!: Book
@@ -19,6 +19,6 @@ export class BookCardComponent implements OnInit {
   }
 
   navigateToBookDetail() {
-    this.router.navigate([this.router.url + '/books/' + this.book.id]);
+    this.router.navigate(['books', this.book.id], {relativeTo: this.route.parent});
   }
 }

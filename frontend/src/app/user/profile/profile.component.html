@@ -1,1 +1,9 @@
-<p>profile works!</p>
+<div class="profile">
+  <nav class="profile-routes">
+    <a class="profile-routes__route" routerLink="." routerLinkActive="profile-routes__route__active-link" [routerLinkActiveOptions]="{exact: true}">Личные данные</a>
+    <a class="profile-routes__route" routerLink="./payments" routerLinkActive="profile-routes__route__active-link">Мои способы оплаты</a>
+    <a class="profile-routes__route" routerLink="./orders" routerLinkActive="profile-routes__route__active-link">Заказы</a>
+    <a class="profile-routes__route" routerLink="./logout" routerLinkActive="profile-routes__route__active-link">Выход</a>
+  </nav>
+  <router-outlet></router-outlet>
+</div>

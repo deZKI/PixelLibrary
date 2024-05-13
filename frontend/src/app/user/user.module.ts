@@ -9,13 +9,19 @@ import { ProfileComponent } from './profile/profile.component';
 import {UserRoutingModule} from "./user-routing.module";
 import {MatIcon} from "@angular/material/icon";
 import {FormsModule} from "@angular/forms";
+import { PaymentComponent } from './payment/payment.component';
+import { OrdersComponent } from './orders/orders.component';
+import { LogoutComponent } from './logout/logout.component';
 
 
 
 @NgModule({
   declarations: [
     LoginRegisterDialogComponent,
-    ProfileComponent
+    ProfileComponent,
+    PaymentComponent,
+    OrdersComponent,
+    LogoutComponent
   ],
     imports: [
         CommonModule,
