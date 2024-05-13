@@ -55,8 +55,7 @@ export class LoginRegisterDialogComponent {
   }
 
   private handleError(error: HttpErrorResponse): void {
-    this.errorMessage = 'Ошибка! Проверьте ваши учетные данные.';
-    console.error('Authentication error:', error.error);
+    this.errorMessage = 'Ошибка!' + error.error['email'];
   }
 
 

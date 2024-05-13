@@ -24,6 +24,7 @@ class Books(models.Model):
     tags = models.ManyToManyField(to=Tags, related_name='books')
     release_date = models.DateField(null=False, blank=False)
     price = models.DecimalField(max_digits=10, default=0, decimal_places=2)
+    page_count = models.IntegerField(default=0)
 
     class Meta:
         verbose_name = 'Book'

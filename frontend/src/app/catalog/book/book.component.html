@@ -1,1 +1,46 @@
-<p>book works!</p>
+<div class="book" *ngIf="book">
+  <div class="book-image">
+    <img src="{{ book.thumbnail }}">
+  </div>
+
+  <div class="book-info">
+    <h1>{{ book.title }}</h1>
+    <h2>{{ book.authors[0].name }}</h2>
+    <div class="book-info-rating">
+      <div class="book-info-rating__rating">
+        {{ book.rating }}
+        <mat-icon svgIcon="star"></mat-icon>
+      </div>
+      <div class="book-info-rating__review">
+
+      </div>
+    </div>
+
+    <div class="book-info__description">
+      {{ book.description }}
+    </div>
+
+    <div class="book-info-tags">
+      <div class="book-info-tags__tag" *ngFor="let tag of book.tags">
+        <span>{{ tag.name }}</span>
+      </div>
+    </div>
+
+    <div class="book-info-additional">
+      <div class="book-info-additional__line">
+        <div>Дата издания</div>
+        <div>{{ book.release_date }}</div>
+      </div>
+
+      <div class="book-info-additional__line">
+        <div>Количество страниц</div>
+        <div>{{ book.page_count }}</div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<app-comment-list [comments]="book.comments"></app-comment-list>

@@ -1,0 +1,19 @@
+<div class="comment" *ngIf="comment">
+  <div class="comment-header">
+
+    <div class="comment-header__title">
+      {{ comment.user.email }}
+      <div class="stars">
+        <span *ngFor="let star of getStars(comment.rating); let i = index" class="star">★</span>
+      </div>
+    </div>
+
+    <div class="comment-header__date">
+      {{ comment.created_at | date: 'dd MMMM yyyy' }}
+    </div>
+  </div>
+
+  <div class="comment__description">
+    {{ comment.text }}
+  </div>
+</div>

@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Book} from "../../shared/models/book";
+import {BookInterfaces} from "../../shared/interfaces/book.interfaces";
 
 @Component({
   selector: 'app-book-list',
@@ -7,5 +7,5 @@ import {Book} from "../../shared/models/book";
   styleUrl: './book-list.component.scss'
 })
 export class BookListComponent {
-  @Input() books: Book[] = []
+  @Input() books: BookInterfaces[] = []
 }

@@ -1,0 +1,40 @@
+.comment {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 20px;
+  background: rgba(246, 246, 255, 0.5);
+  gap: 24px;
+
+  color: rgb(47, 58, 86);
+  font-family: Nunito, sans-serif;
+  letter-spacing: 0;
+  text-align: left;
+
+  &-header {
+    display: flex;
+    justify-content: space-between;
+
+    &__title {
+      color: rgb(226, 71, 75);
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 27px;
+    }
+
+    &__date {
+      color: rgba(47, 58, 86, 0.5);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 19px;
+    }
+  }
+
+  &__description {
+    color: rgb(47, 58, 86);
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 22px;
+    text-align: left;
+  }
+}

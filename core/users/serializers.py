@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Users
+from .models import Users, BookComment
 
 
 class UsersRegistrationSerializer(serializers.ModelSerializer):
@@ -17,3 +17,17 @@ class UsersRegistrationSerializer(serializers.ModelSerializer):
         user.set_password(validated_data['password'])
         user.save()
         return user
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Users
+        fields = ['id', 'first_name', 'last_name', 'email']
+
+
+class BookCommentSerializer(serializers.ModelSerializer):
+    user = UserSerializer()
+
+    class Meta:
+        model = BookComment
+        fields = ['id', 'user', 'text', 'created_at', 'edited_at', 'rating', 'edited']

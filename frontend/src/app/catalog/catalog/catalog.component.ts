@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {BookService} from "../../services/book.service";
-import {Book} from "../../shared/models/book";
+import {BookInterfaces} from "../../shared/interfaces/book.interfaces";
 import {take, tap} from "rxjs/operators";
 
 @Component({
@@ -9,7 +9,7 @@ import {take, tap} from "rxjs/operators";
   styleUrl: './catalog.component.scss'
 })
 export class CatalogComponent implements OnInit {
-  books: Book[] = []
+  books: BookInterfaces[] = []
 
   constructor(private bookService: BookService) {
   }

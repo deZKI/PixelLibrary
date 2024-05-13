@@ -48,7 +48,7 @@ class CommentBase(models.Model):
 class BookComment(CommentBase):
     """A comment on a book"""
 
-    book = models.ForeignKey(Books, on_delete=models.CASCADE)
+    book = models.ForeignKey(Books, related_name='comments', on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = 'Book Comment'

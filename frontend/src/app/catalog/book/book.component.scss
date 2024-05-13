@@ -1,0 +1,82 @@
+.book {
+  margin-top: 100px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20%;
+
+  font-family: Nunito, sans-serif;
+  text-align: left;
+  letter-spacing: 0;
+
+  &-image {
+    max-width: 320px;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  &-info {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    gap: 0.5rem;
+    h1 {
+      color: rgb(47, 58, 86);
+      font-size: 36px;
+      font-weight: 700;
+      line-height: 49px;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      color: rgb(64, 109, 150);
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 33px;
+    }
+
+    &__description {
+      color: rgb(47, 58, 86);
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 22px;
+    }
+
+    &-tags {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+      flex-wrap: wrap;
+
+      &__tag {
+        box-sizing: border-box;
+        border: 3px solid rgb(47, 58, 86);
+        border-radius: 8px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 8px;
+      }
+    }
+
+    &-additional {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      &__line {
+        display: flex;
+        justify-content: space-between;
+        color: rgb(47, 58, 86);
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 22px;
+      }
+    }
+  }
+
+}

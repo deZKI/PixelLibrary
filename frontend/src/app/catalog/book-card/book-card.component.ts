@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Book} from "../../shared/models/book";
+import {BookInterfaces} from "../../shared/interfaces/book.interfaces";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-book-card',
@@ -8,9 +9,16 @@ import {Book} from "../../shared/models/book";
 })
 export class BookCardComponent implements OnInit {
 
-  @Input() book!: Book
+  constructor(private router: Router) {
+  }
+
+  @Input() book!: BookInterfaces
 
   ngOnInit() {
 
+  }
+
+  navigateToBookDetail() {
+    this.router.navigate([this.router.url + '/books/' + this.book.id]);
   }
 }

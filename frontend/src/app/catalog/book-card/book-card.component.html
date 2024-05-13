@@ -3,7 +3,7 @@
     <img [src]="book.thumbnail">
   </div>
 
-  <div class="book-card__title">
+  <div class="book-card__title" (click)="navigateToBookDetail()">
     {{book.title}}
   </div>
 

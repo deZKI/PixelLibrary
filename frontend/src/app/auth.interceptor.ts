@@ -3,7 +3,7 @@ import {HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse}
 import {Observable, throwError, BehaviorSubject} from 'rxjs';
 import {catchError, filter, switchMap, take} from 'rxjs/operators';
 import {AuthService} from './services/auth.service';
-import {AuthResponse} from "./shared/models/auth";
+import {AuthResponse} from "./shared/interfaces/auth.interfaces";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {

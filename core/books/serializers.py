@@ -2,6 +2,7 @@ from rest_framework.serializers import ModelSerializer, FloatField
 
 from services.permissions import BookPermissionsService
 from books.models import Books, Authors, Tags
+from users.serializers import BookCommentSerializer
 
 
 class AuthorsSerializer(ModelSerializer):
@@ -24,8 +25,16 @@ class TagsSerializer(ModelSerializer):
 
 class BooksSerializer(ModelSerializer):
     authors = AuthorsShortSerializer(many=True, read_only=True)
-    tags = TagsSerializer(many=True, read_only=True)
     rating = FloatField(read_only=True)
+
+    class Meta:
+        fields = ('id', 'title', 'thumbnail', 'authors', 'rating')
+        model = Books
+
+
+class BooksDetailSerializer(BooksSerializer):
+    tags = TagsSerializer(many=True, read_only=True)
+    comments = BookCommentSerializer(many=True, read_only=True)
 
     class Meta:
         fields = '__all__'

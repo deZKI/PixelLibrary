@@ -1,0 +1,15 @@
+.comment-list {
+  gap: 24px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 24px;
+  &__header {
+    color: rgb(47, 58, 86);
+    font-family: Nunito, sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 49px;
+    letter-spacing: 0;
+    text-align: left;
+  }
+}

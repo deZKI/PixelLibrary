@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import {AuthResponse} from "../shared/models/auth";
+import {AuthResponse} from "../shared/interfaces/auth.interfaces";
 import {environment} from "../../enviroments/environment";
 
 @Injectable({
