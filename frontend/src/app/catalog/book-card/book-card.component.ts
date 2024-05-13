@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {BookInterfaces} from "../../shared/interfaces/book.interfaces";
+import {Book} from "../../shared/interfaces/book.interfaces";
 import {Router} from "@angular/router";
 
 @Component({
@@ -12,7 +12,7 @@ export class BookCardComponent implements OnInit {
   constructor(private router: Router) {
   }
 
-  @Input() book!: BookInterfaces
+  @Input() book!: Book
 
   ngOnInit() {
 

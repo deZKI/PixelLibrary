@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {environment} from "../../enviroments/environment";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {BookInterfaces, BookDetail} from "../shared/interfaces/book.interfaces";
+import {Book, BookDetail} from "../shared/interfaces/book.interfaces";
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +14,8 @@ export class BookService {
   constructor(private http: HttpClient) {
   }
 
-  getBooks(): Observable<BookInterfaces[]> {
-    return this.http.get<BookInterfaces[]>(this.apiBooks);
+  getBooks(): Observable<Book[]> {
+    return this.http.get<Book[]>(this.apiBooks);
   }
 
   getBookById(id: number): Observable<BookDetail> {

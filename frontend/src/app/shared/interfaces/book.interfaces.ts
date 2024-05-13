@@ -6,7 +6,7 @@ export interface Tag {
   name: string
 }
 
-export interface BookInterfaces {
+export interface Book {
   id: number
   title: string
   thumbnail: string
@@ -14,7 +14,7 @@ export interface BookInterfaces {
   rating: number
 }
 
-export interface BookDetail extends BookInterfaces {
+export interface BookDetail extends Book {
   tags: Tag[]
   comments: CommentBase[]
   release_date: string

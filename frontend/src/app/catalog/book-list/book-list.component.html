@@ -1,6 +1,5 @@
+<h4>{{ title }}</h4>
 <div class="book-list">
-  <div *ngFor="let book of books">
-    <app-book-card [book]="book"></app-book-card>
-  </div>
+  <app-book-card [book]="book" *ngFor="let book of books"></app-book-card>
 </div>
 
