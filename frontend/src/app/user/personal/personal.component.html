@@ -1,5 +1,5 @@
 <div class="personal">
-  <form class="personal-form" [formGroup]="personalForm">
+  <form class="personal-form" *ngIf="personalForm" [formGroup]="personalForm">
     <div class="personal-form-fields">
 
       <div class="personal-form-fields__field">
@@ -14,7 +14,7 @@
 
       <div class="personal-form-fields__field">
         <label>Отчество</label>
-        <input class="pixel__mat" type="text" formControlName="middleName">
+        <input class="pixel__mat" type="text" formControlName="patronymic">
       </div>
 
       <div class="personal-form-fields__field">
@@ -27,17 +27,18 @@
         <input class="pixel__mat" type="tel" formControlName="phone">
       </div>
 
-      <div class="personal-form-fields__field">
-        <label>E-mail</label>
-        <input class="pixel__mat" type="email" formControlName="email">
-      </div>
+<!--   FIXME продумать логику смены почты
+      <div class="personal-form-fields__field">-->
+<!--        <label>E-mail</label>-->
+<!--        <input class="pixel__mat" type="email" formControlName="email">-->
+<!--      </div>-->
     </div>
 
     <div class="personal-form__note">
       Чтобы изменить номер телефона, пожалуйста, обратитесь в службу поддержки.
     </div>
 
-    <button class="personal-form__submit-button" type="submit" (click)="save()">Сохранить изменения</button>
+    <button class="personal-form__submit-button" type="submit" [disabled]="isSavingButtonDisabled()" (click)="save()">Сохранить изменения</button>
 
   </form>
 

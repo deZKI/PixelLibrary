@@ -55,7 +55,7 @@ export class LoginRegisterDialogComponent {
   }
 
   private handleError(error: HttpErrorResponse): void {
-    this.errorMessage = 'Ошибка!' + error.error['email'];
+    this.errorMessage = 'Ошибка!' + error.error;
   }
 
 

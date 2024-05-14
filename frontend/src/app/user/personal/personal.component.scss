@@ -68,6 +68,9 @@
     text-align: left;
     width: fit-content;
     padding: 12px;
+    &:disabled {
+      background: rgb(42, 33, 33);
+    }
   }
 }
 
