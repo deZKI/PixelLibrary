@@ -1,45 +1,51 @@
 <div class="personal">
-  <div class="personal__info">
-    <div class=""></div>
-  </div>
+  <form class="personal-form" [formGroup]="personalForm">
+    <div class="personal-form-fields">
 
-  <form>
-    <mat-form-field appearance="fill">
-      <mat-label>Фамилия</mat-label>
-      <input matInput value="Едынак">
-    </mat-form-field>
+      <div class="personal-form-fields__field">
+        <label>Фамилия</label>
+        <input class="pixel__mat" type="text" formControlName="lastName">
+      </div>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Имя</mat-label>
-      <input matInput value="Мария">
-    </mat-form-field>
+      <div class="personal-form-fields__field">
+        <label>Имя</label>
+        <input class="pixel__mat" type="text" formControlName="firstName">
+      </div>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Отчество</mat-label>
-      <input matInput value="Игоревна">
-    </mat-form-field>
+      <div class="personal-form-fields__field">
+        <label>Отчество</label>
+        <input class="pixel__mat" type="text" formControlName="middleName">
+      </div>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Дата рождения</mat-label>
-      <input matInput [matDatepicker]="picker" value="2002-05-16">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
+      <div class="personal-form-fields__field">
+        <label>Дата рождения</label>
+        <input class="pixel__mat" type="date" formControlName="birthDate">
+      </div>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Телефон</mat-label>
-      <input matInput value="+7 (914) 779-55-35">
-    </mat-form-field>
+      <div class="personal-form-fields__field">
+        <label>Телефон</label>
+        <input class="pixel__mat" type="tel" formControlName="phone">
+      </div>
 
-    <mat-form-field appearance="fill">
-      <mat-label>E-mail</mat-label>
-      <input matInput type="email" value="v4L.mari@yandex.ru">
-    </mat-form-field>
+      <div class="personal-form-fields__field">
+        <label>E-mail</label>
+        <input class="pixel__mat" type="email" formControlName="email">
+      </div>
+    </div>
 
-    <p class="note">
+    <div class="personal-form__note">
       Чтобы изменить номер телефона, пожалуйста, обратитесь в службу поддержки.
-    </p>
+    </div>
 
-    <button mat-raised-button color="primary">Сохранить изменения</button>
+    <button class="personal-form__submit-button" type="submit" (click)="save()">Сохранить изменения</button>
+
   </form>
+
+  <p class="personal__delete-account-text">
+    Удаление профиля <br>
+    Чтобы удалить ваш профиль,свяжитесь с нами через обратную связь. <br>
+    Пожалуйста, укажите в обращении свой номер телефона «79147795535». <br>
+    <br>
+    Мы удалим ваш профиль в течение 5 рабочих дней после обращения.
+  </p>
 </div>

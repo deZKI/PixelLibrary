@@ -8,7 +8,7 @@ import {MatInput} from "@angular/material/input";
 import { ProfileComponent } from './profile/profile.component';
 import {UserRoutingModule} from "./user-routing.module";
 import {MatIcon} from "@angular/material/icon";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { PaymentComponent } from './payment/payment.component';
 import { OrdersComponent } from './orders/orders.component';
 import { PersonalComponent } from './personal/personal.component';
@@ -48,7 +48,8 @@ import {MatNativeDateModule} from "@angular/material/core";
     MatDatepicker,
     MatDatepickerToggle,
     MatDatepickerInput,
-    MatNativeDateModule
+    MatNativeDateModule,
+    ReactiveFormsModule
   ],
   providers: [
     MatDatepickerModule,
