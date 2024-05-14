@@ -7,6 +7,7 @@ import {MatIcon} from "@angular/material/icon";
 import { BookListComponent } from './book-list/book-list.component';
 import { BookComponent } from './book/book.component';
 import {CommentListComponent} from "../components/comment-list/comment-list.component";
+import { BookPurchaseCardComponent } from './book-purchase-card/book-purchase-card.component';
 
 
 
@@ -15,7 +16,8 @@ import {CommentListComponent} from "../components/comment-list/comment-list.comp
     BookCardComponent,
     CatalogComponent,
     BookListComponent,
-    BookComponent
+    BookComponent,
+    BookPurchaseCardComponent,
   ],
   imports: [
     CommonModule,

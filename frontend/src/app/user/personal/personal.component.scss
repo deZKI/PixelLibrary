@@ -57,21 +57,6 @@
     text-align: left;
   }
 
-  &__submit-button {
-    border-radius: 10px;
-    background: rgb(47, 58, 86);
-    color: rgb(246, 246, 255);
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 27px;
-    letter-spacing: 0;
-    text-align: left;
-    width: fit-content;
-    padding: 12px;
-    &:disabled {
-      background: rgb(42, 33, 33);
-    }
-  }
 }
 
 

@@ -2,8 +2,9 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 20%;
-
+  position: relative;
+  gap: 10%;
+  margin-bottom: 2rem;
   font-family: Nunito, sans-serif;
   text-align: left;
   letter-spacing: 0;
@@ -77,4 +78,9 @@
     }
   }
 
+}
+
+.book-purchase {
+  display: flex;
+  justify-content: end;
 }

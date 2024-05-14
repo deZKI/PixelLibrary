@@ -1,0 +1,9 @@
+<div *ngIf="book" class="purchase">
+  <div class="d-flex" style="gap: 32px">
+    <div class="purchase__price">{{ book.price }}₽</div>
+    <div class="d-flex" style="gap: 12px">
+      <button class="pixel__mat-button" style="padding: 5px;">Купить</button>
+      <mat-icon class="pixel__mat-icon" svgIcon="bookmark"></mat-icon>
+    </div>
+  </div>
+</div>
