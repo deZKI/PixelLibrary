@@ -9,7 +9,7 @@ from rest_framework.viewsets import ReadOnlyModelViewSet, ModelViewSet
 from users.models import BasketItem, WishItem
 from .models import Books, Tags
 from .serializers import BooksSerializer, TagsSerializer, BooksDetailSerializer, BasketItemSerializer, \
-    WishItemSerializer
+    WishItemSerializer, WishItemCreationSerializer, BasketItemCreationSerializer
 
 
 class BooksViewSet(ReadOnlyModelViewSet):
@@ -57,7 +57,17 @@ class WishItemViewSet(UserItemViewSet):
     queryset = WishItem.objects.all()
     serializer_class = WishItemSerializer
 
+    def get_serializer_class(self):
+        if self.action == 'create':
+            return WishItemCreationSerializer
+        return WishItemSerializer
+
 
 class BasketItemViewSet(UserItemViewSet):
     queryset = BasketItem.objects.all()
     serializer_class = BasketItemSerializer
+
+    def get_serializer_class(self):
+        if self.action == 'create':
+            return BasketItemCreationSerializer
+        return BasketItemSerializer

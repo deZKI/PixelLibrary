@@ -1,4 +1,5 @@
-from rest_framework.serializers import ModelSerializer, FloatField, HiddenField, CurrentUserDefault
+from rest_framework.serializers import ModelSerializer, FloatField, HiddenField, CurrentUserDefault, \
+    PrimaryKeyRelatedField
 
 from services.permissions import BookPermissionsService
 from books.models import Books, Authors, Tags
@@ -62,23 +63,40 @@ class BooksDetailSerializer(BooksSerializer):
         return representation
 
 
-class WishItemSerializer(ModelSerializer):
+class UserItemSerializer(ModelSerializer):
     book = BooksSerializer()
     user = HiddenField(
         default=CurrentUserDefault()
     )
 
+
+class UserItemCreationSerializer(ModelSerializer):
+    book = PrimaryKeyRelatedField(queryset=Books.objects.all())
+
+    user = HiddenField(
+        default=CurrentUserDefault()
+    )
+
+
+class WishItemSerializer(UserItemSerializer):
+    class Meta(UserItemSerializer):
+        model = WishItem
+        fields = ['id', 'user', 'book']
+
+
+class BasketItemSerializer(UserItemSerializer):
+    class Meta:
+        model = BasketItem
+        fields = ['id', 'user', 'book']
+
+
+class WishItemCreationSerializer(UserItemCreationSerializer):
     class Meta:
         model = WishItem
         fields = ['id', 'user', 'book']
 
 
-class BasketItemSerializer(ModelSerializer):
-    book = BooksSerializer()
-    user = HiddenField(
-        default=CurrentUserDefault()
-    )
-
+class BasketItemCreationSerializer(UserItemCreationSerializer):
     class Meta:
         model = BasketItem
         fields = ['id', 'user', 'book']

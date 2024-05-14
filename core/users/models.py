@@ -86,6 +86,7 @@ class BasketItem(models.Model):
     class Meta:
         verbose_name = 'Корзина'
         verbose_name_plural = 'Корзина'
+        unique_together = ('user', 'book')
 
     def __str__(self):
         return f'Корзина для {self.user.email} | книга: {self.book.title}'
