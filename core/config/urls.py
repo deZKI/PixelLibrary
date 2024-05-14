@@ -12,7 +12,7 @@ from rest_framework_simplejwt.views import (
 )
 
 from books.views import BooksViewSet, TagsViewSet
-from users.views import UserRegistrationAPIView
+from users.views import UserRegistrationAPIView, UsersDetailView
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -26,6 +26,7 @@ schema_view = get_schema_view(
 router = routers.DefaultRouter()
 router.register(r'books', BooksViewSet, basename='books')
 router.register(r'tags', TagsViewSet, basename='tags')
+router.register(r'users', UsersDetailView, basename='users')
 urlpatterns = [
     path('api/', include(router.urls)),
 
