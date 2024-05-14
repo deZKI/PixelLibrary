@@ -1,8 +1,9 @@
-from rest_framework.serializers import ModelSerializer, FloatField
+from rest_framework.serializers import ModelSerializer, FloatField, HiddenField, CurrentUserDefault
 
 from services.permissions import BookPermissionsService
 from books.models import Books, Authors, Tags
 from users.serializers import BookCommentSerializer
+from users.models import BasketItem, WishItem
 
 
 class AuthorsSerializer(ModelSerializer):
@@ -28,7 +29,7 @@ class BooksSerializer(ModelSerializer):
     rating = FloatField(read_only=True)
 
     class Meta:
-        fields = ('id', 'title', 'thumbnail', 'authors', 'rating')
+        fields = ('id', 'title', 'thumbnail', 'authors', 'rating', 'price')
         model = Books
 
 
@@ -59,3 +60,25 @@ class BooksDetailSerializer(BooksSerializer):
             representation.pop('file', None)
 
         return representation
+
+
+class WishItemSerializer(ModelSerializer):
+    book = BooksSerializer()
+    user = HiddenField(
+        default=CurrentUserDefault()
+    )
+
+    class Meta:
+        model = WishItem
+        fields = ['id', 'user', 'book']
+
+
+class BasketItemSerializer(ModelSerializer):
+    book = BooksSerializer()
+    user = HiddenField(
+        default=CurrentUserDefault()
+    )
+
+    class Meta:
+        model = BasketItem
+        fields = ['id', 'user', 'book']

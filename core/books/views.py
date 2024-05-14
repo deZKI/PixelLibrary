@@ -2,10 +2,14 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
 from django.db.models import Avg
 
-from rest_framework.viewsets import ReadOnlyModelViewSet
+from rest_framework.response import Response
+from rest_framework import status, permissions
+from rest_framework.viewsets import ReadOnlyModelViewSet, ModelViewSet
 
+from users.models import BasketItem, WishItem
 from .models import Books, Tags
-from .serializers import BooksSerializer, TagsSerializer, BooksDetailSerializer
+from .serializers import BooksSerializer, TagsSerializer, BooksDetailSerializer, BasketItemSerializer, \
+    WishItemSerializer
 
 
 class BooksViewSet(ReadOnlyModelViewSet):
@@ -30,3 +34,30 @@ class TagsViewSet(ReadOnlyModelViewSet):
     @method_decorator(cache_page(60 * 5))
     def list(self, request, *args, **kwargs):
         return super().list(request, *args, **kwargs)
+
+
+class UserItemViewSet(ModelViewSet):
+    permission_classes = [permissions.IsAuthenticated]
+    http_method_names = ['get', 'post', 'delete']
+
+    def get_queryset(self):
+        # Возвращает список желаний только для текущего пользователя
+        return self.queryset.filter(user=self.request.user)
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        if instance.user != request.user:
+            return Response({"detail": "Вы не можете удалить чужой элемент."},
+                            status=status.HTTP_403_FORBIDDEN)
+        self.perform_destroy(instance)
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class WishItemViewSet(UserItemViewSet):
+    queryset = WishItem.objects.all()
+    serializer_class = WishItemSerializer
+
+
+class BasketItemViewSet(UserItemViewSet):
+    queryset = BasketItem.objects.all()
+    serializer_class = BasketItemSerializer

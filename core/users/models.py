@@ -65,3 +65,27 @@ class AuthComment(CommentBase):
     class Meta:
         verbose_name = 'Author Comment'
         unique_together = ('user', 'author')
+
+
+class WishItem(models.Model):
+    """A bookmark / wish book"""
+    user = models.ForeignKey(to=Users, on_delete=models.CASCADE)
+    book = models.ForeignKey(to=Books, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = 'список желаний'
+        verbose_name_plural = 'список желаний'
+        unique_together = ('user', 'book')
+
+
+class BasketItem(models.Model):
+    """A basket """
+    user = models.ForeignKey(to=Users, on_delete=models.CASCADE)
+    book = models.ForeignKey(to=Books, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = 'Корзина'
+        verbose_name_plural = 'Корзина'
+
+    def __str__(self):
+        return f'Корзина для {self.user.email} | книга: {self.book.title}'
