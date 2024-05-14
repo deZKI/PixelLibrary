@@ -27,8 +27,8 @@ router = routers.DefaultRouter()
 router.register(r'books', BooksViewSet, basename='books')
 router.register(r'tags', TagsViewSet, basename='tags')
 router.register(r'users', UsersDetailView, basename='users')
-router.register(r'wishes', WishItemViewSet, basename='wish')
-router.register(r'basket', BasketItemViewSet, basename='basket')
+router.register(r'wishes', WishItemViewSet, basename='wishes')
+router.register(r'baskets', BasketItemViewSet, basename='baskets')
 urlpatterns = [
     path('api/', include(router.urls)),
 
