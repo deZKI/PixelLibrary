@@ -4,7 +4,7 @@ import {AuthGuard} from "./auth.guard";
 
 const routes: Routes = [
   {path: '', loadChildren: () => import('./catalog/catalog.module').then(m => m.CatalogModule)},
-  {path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule), canActivate: [AuthGuard]},
+  {path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule)},
 ];
 
 @NgModule({

@@ -21,7 +21,7 @@ export class LoginRegisterDialogComponent {
 
   constructor(
     private authService: AuthService, private router: Router,
-    public dialogRef: MatDialogRef<LoginRegisterDialogComponent>) {
+    private dialogRef: MatDialogRef<LoginRegisterDialogComponent>) {
   }
 
   changeMode() {

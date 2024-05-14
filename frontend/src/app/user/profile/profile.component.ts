@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {MatDialog} from "@angular/material/dialog";
+import {LogoutDialogComponent} from "../logout-dialog/logout-dialog.component";
 
 @Component({
   selector: 'app-profile',
@@ -7,4 +9,13 @@ import { Component } from '@angular/core';
 })
 export class ProfileComponent {
 
+  constructor(private dialog: MatDialog) {
+  }
+
+  logoutDialog() {
+    this.dialog.open(LogoutDialogComponent, {
+      maxWidth: '100%',
+      minWidth: '320px'
+    });
+  }
 }

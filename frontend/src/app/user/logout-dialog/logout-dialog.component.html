@@ -1,3 +1,7 @@
 <div class="logout-dialog">
-
+    <h1>Вы уверены?</h1>
+    <div class="d-flex flex-wrap justify-content-between" style="gap: 1rem">
+      <button class="pixel__mat logout-dialog__button logout-dialog__button__logout" (click)="logout()">Выйти</button>
+      <button class="pixel__mat logout-dialog__button" (click)="cancel()">Отмена</button>
+    </div>
 </div>

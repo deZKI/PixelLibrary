@@ -4,6 +4,7 @@ import {ProfileComponent} from "./profile/profile.component";
 import {OrdersComponent} from "./orders/orders.component";
 import {PaymentComponent} from "./payment/payment.component";
 import {PersonalComponent} from "./personal/personal.component";
+import {AuthGuard} from "../auth.guard";
 
 
 const routes: Routes = [
@@ -12,7 +13,7 @@ const routes: Routes = [
       {path: '', component: PersonalComponent},
       {path: 'payments', component: PaymentComponent},
       {path: 'orders', component: OrdersComponent},
-    ]
+    ], canActivate: [AuthGuard]
   },
 ];
 

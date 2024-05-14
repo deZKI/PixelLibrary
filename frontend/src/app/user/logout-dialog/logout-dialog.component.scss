@@ -1,0 +1,15 @@
+.logout-dialog {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+
+  &__button {
+    min-width: 100px;
+
+    &__logout {
+      background: crimson;
+    }
+  }
+}
