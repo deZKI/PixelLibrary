@@ -3,7 +3,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   position: relative;
-  gap: 10%;
+  gap: 1rem;
   margin-bottom: 2rem;
   font-family: Nunito, sans-serif;
   text-align: left;
@@ -11,6 +11,7 @@
 
   &-image {
     width: 320px;
+    flex: 1;
 
     img {
       width: 100%;
@@ -22,6 +23,7 @@
     flex-direction: column;
     max-width: 500px;
     gap: 0.5rem;
+    flex: 1;
     h1 {
       color: rgb(47, 58, 86);
       font-size: 36px;

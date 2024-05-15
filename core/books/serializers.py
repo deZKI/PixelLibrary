@@ -1,5 +1,5 @@
 from rest_framework.serializers import ModelSerializer, FloatField, HiddenField, CurrentUserDefault, \
-    PrimaryKeyRelatedField
+    PrimaryKeyRelatedField, SerializerMethodField
 
 from services.permissions import BookPermissionsService
 from books.models import Books, Authors, Tags
@@ -37,6 +37,20 @@ class BooksSerializer(ModelSerializer):
 class BooksDetailSerializer(BooksSerializer):
     tags = TagsSerializer(many=True, read_only=True)
     comments = BookCommentSerializer(many=True, read_only=True)
+    in_basket = SerializerMethodField()
+    in_wishes = SerializerMethodField()
+
+    def get_in_basket(self, book: Books):
+        request = self.context.get('request')
+        if not request.user.is_authenticated:
+            return False
+        return BasketItem.objects.filter(user=request.user, book=book).exists()
+
+    def get_in_wishes(self, book: Books):
+        request = self.context.get('request')
+        if not request.user.is_authenticated:
+            return False
+        return WishItem.objects.filter(user=request.user, book=book).exists()
 
     class Meta:
         fields = '__all__'

@@ -31,6 +31,9 @@ export class AppComponent {
       `bookmark`,
       this.domSanitizer.bypassSecurityTrustResourceUrl("/assets/icons/bookmark.svg")
     ).addSvgIcon(
+      `bookmark-red`,
+      this.domSanitizer.bypassSecurityTrustResourceUrl("/assets/icons/bookmark-red.svg")
+    ).addSvgIcon(
       `favorite`,
       this.domSanitizer.bypassSecurityTrustResourceUrl("/assets/icons/favorite.svg")
     ).addSvgIcon(

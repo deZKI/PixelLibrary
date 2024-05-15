@@ -36,7 +36,7 @@ export class BookComponent implements OnInit, OnDestroy {
       }),
       switchMap(() => this.bookService.getBooks()),
       tap(books => {
-        this.similarBooks = books.filter(book => book.id !== this.bookId); // Фильтруем книги для получения похожих
+        this.similarBooks = books.filter(book => book.id !== this.book.id); // Фильтруем книги для получения похожих
       }),
       takeUntil(this.destroy$) // Прекращаем подписку при вызове destroy$
     ).subscribe();

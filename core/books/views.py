@@ -45,7 +45,13 @@ class UserItemViewSet(ModelViewSet):
         return self.queryset.filter(user=self.request.user)
 
     def destroy(self, request, *args, **kwargs):
-        instance = self.get_object()
+        try:
+            instance = self.get_queryset().get(book=kwargs['pk'])
+        except Exception as error:
+            print('error', error)
+            return Response({"detail": "Вы не можете удалить несуществующий элемент."},
+                            status=status.HTTP_404_NOT_FOUND)
+
         if instance.user != request.user:
             return Response({"detail": "Вы не можете удалить чужой элемент."},
                             status=status.HTTP_403_FORBIDDEN)

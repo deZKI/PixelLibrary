@@ -1,6 +1,7 @@
 .purchase {
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
   padding: 20px;
   border-radius: 16px;
@@ -15,4 +16,17 @@
     letter-spacing: 0;
     text-align: left;
   }
+
+  &__button {
+    width: 150px;
+    padding: 5px;
+    text-align: center;
+  }
+
+  &__icon {
+    background: none;
+    border: none;
+  }
+
 }
+

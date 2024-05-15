@@ -12,6 +12,7 @@ export interface Book {
   thumbnail: string
   authors: Author[]
   rating: number
+  price: number
 }
 
 export interface BookDetail extends Book {
@@ -19,7 +20,13 @@ export interface BookDetail extends Book {
   comments: CommentBase[]
   release_date: string
   description: string
-  price: number
   page_count: number
   file?: string
+  in_basket?: boolean
+  in_wishes?: boolean
+}
+
+export interface UserItemResponse {
+  id: number
+  book: BookDetail
 }

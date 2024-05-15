@@ -1,16 +1,19 @@
 import {Injectable} from '@angular/core';
 import {HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse} from '@angular/common/http';
 import {Observable, throwError, BehaviorSubject} from 'rxjs';
-import {catchError, filter, switchMap, take} from 'rxjs/operators';
+import {catchError, filter, switchMap, take, tap} from 'rxjs/operators';
 import {AuthService} from './services/auth.service';
 import {AuthResponse} from "./shared/interfaces/auth.interfaces";
+import {LoginRegisterDialogComponent} from "./user/login-register-dialog/login-register-dialog.component";
+import {MatDialog} from "@angular/material/dialog";
+import {Router} from "@angular/router";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   private isRefreshing = false;
   private refreshTokenSubject: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private dialog: MatDialog, private router: Router) {
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -49,6 +52,8 @@ export class AuthInterceptor implements HttpInterceptor {
         catchError(err => {
           this.isRefreshing = false;
           this.authService.logout();
+          localStorage.setItem('returnUrl',  this.router.url);
+          this.openLoginDialog()
           return throwError(err);
         })
       );
@@ -59,5 +64,13 @@ export class AuthInterceptor implements HttpInterceptor {
         switchMap(token => next.handle(this.addToken(request, token!)))
       );
     }
+  }
+
+  openLoginDialog(): void {
+    this.dialog.open(LoginRegisterDialogComponent, {
+      maxWidth: '100%',
+      width: '25vw',
+      minWidth: '320px'
+    });
   }
 }
