@@ -28,5 +28,5 @@ export interface BookDetail extends Book {
 
 export interface UserItemResponse {
   id: number
-  book: BookDetail
+  book: Book
 }

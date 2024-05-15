@@ -14,8 +14,8 @@ export class WishService {
   constructor(private http: HttpClient) {
   }
 
-  getWishes(): Observable<Book[]> {
-    return this.http.get<Book[]>(this.apiWishes);
+  getWishes(): Observable<UserItemResponse[]> {
+    return this.http.get<UserItemResponse[]>(this.apiWishes);
   }
 
   geWishById(id: number): Observable<BookDetail> {

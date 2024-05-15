@@ -39,10 +39,10 @@ export class AuthService {
       return throwError('No refresh token found');
     }
 
-    return this.http.post<AuthResponse>(`${this.apiUrl}/token/refresh/`, { refreshToken })
+    return this.http.post<AuthResponse>(`${this.apiUrl}/token/refresh/`, { refresh: refreshToken })
       .pipe(
         tap(response => {
-          this.saveTokens(response.access, response.refresh);
+          this.saveTokens(response.access, refreshToken);
         })
       );
   }

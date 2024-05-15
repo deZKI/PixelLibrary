@@ -1,20 +1,19 @@
-import {Injectable} from '@angular/core';
-import {HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse} from '@angular/common/http';
-import {Observable, throwError, BehaviorSubject} from 'rxjs';
-import {catchError, filter, switchMap, take, tap} from 'rxjs/operators';
-import {AuthService} from './services/auth.service';
-import {AuthResponse} from "./shared/interfaces/auth.interfaces";
-import {LoginRegisterDialogComponent} from "./user/login-register-dialog/login-register-dialog.component";
-import {MatDialog} from "@angular/material/dialog";
-import {Router} from "@angular/router";
+import { Injectable } from '@angular/core';
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError, BehaviorSubject } from 'rxjs';
+import { catchError, filter, switchMap, take, tap } from 'rxjs/operators';
+import { AuthService } from './services/auth.service';
+import { AuthResponse } from "./shared/interfaces/auth.interfaces";
+import { LoginRegisterDialogComponent } from "./user/login-register-dialog/login-register-dialog.component";
+import { MatDialog } from "@angular/material/dialog";
+import { Router } from "@angular/router";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   private isRefreshing = false;
   private refreshTokenSubject: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
 
-  constructor(private authService: AuthService, private dialog: MatDialog, private router: Router) {
-  }
+  constructor(private authService: AuthService, private dialog: MatDialog, private router: Router) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const accessToken = this.authService.getAccessToken();
@@ -52,8 +51,16 @@ export class AuthInterceptor implements HttpInterceptor {
         catchError(err => {
           this.isRefreshing = false;
           this.authService.logout();
-          localStorage.setItem('returnUrl',  this.router.url);
-          this.openLoginDialog()
+          localStorage.setItem('returnUrl', this.router.url);
+          this.openLoginDialog().afterClosed().pipe(
+            switchMap(() => {
+              const newAccessToken = this.authService.getAccessToken();
+              if (newAccessToken) {
+                return next.handle(this.addToken(request, newAccessToken));
+              }
+              return throwError(err);
+            })
+          );
           return throwError(err);
         })
       );
@@ -66,8 +73,8 @@ export class AuthInterceptor implements HttpInterceptor {
     }
   }
 
-  openLoginDialog(): void {
-    this.dialog.open(LoginRegisterDialogComponent, {
+  openLoginDialog(){
+    return this.dialog.open(LoginRegisterDialogComponent, {
       maxWidth: '100%',
       width: '25vw',
       minWidth: '320px'

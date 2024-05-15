@@ -35,10 +35,10 @@
     <!--      <div>Мои книги</div>-->
     <!--    </div>-->
 
-    <!--    <div class="navbar-icons__icon">-->
-    <!--      <mat-icon class="pixel__mat-icon" [svgIcon]="'basket'"></mat-icon>-->
-    <!--      <div>Корзина</div>-->
-    <!--    </div>-->
+        <div [routerLink]="'user/orders'" class="navbar-icons__icon">
+          <mat-icon class="pixel__mat-icon" [svgIcon]="'basket'"></mat-icon>
+          <div>Корзина</div>
+        </div>
 
     <div [routerLink]="'user'" class="navbar-icons__icon">
       <mat-icon class="pixel__mat-icon" [svgIcon]="'profile'"></mat-icon>

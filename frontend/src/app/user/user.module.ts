@@ -20,6 +20,8 @@ import {
   MatDatepickerToggle
 } from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
+import { BasketComponent } from './basket/basket.component';
+import {CatalogModule} from "../catalog/catalog.module";
 
 
 
@@ -30,27 +32,29 @@ import {MatNativeDateModule} from "@angular/material/core";
     PaymentComponent,
     OrdersComponent,
     PersonalComponent,
-    LogoutDialogComponent
+    LogoutDialogComponent,
+    BasketComponent
   ],
-  imports: [
-    CommonModule,
-    UserRoutingModule,
-    MatDialogActions,
-    MatButton,
-    MatLabel,
-    MatFormField,
-    MatInput,
-    MatDialogContent,
-    MatDialogTitle,
-    MatDialogClose,
-    MatIcon,
-    FormsModule,
-    MatDatepicker,
-    MatDatepickerToggle,
-    MatDatepickerInput,
-    MatNativeDateModule,
-    ReactiveFormsModule
-  ],
+    imports: [
+        CommonModule,
+        UserRoutingModule,
+        MatDialogActions,
+        MatButton,
+        MatLabel,
+        MatFormField,
+        MatInput,
+        MatDialogContent,
+        MatDialogTitle,
+        MatDialogClose,
+        MatIcon,
+        FormsModule,
+        MatDatepicker,
+        MatDatepickerToggle,
+        MatDatepickerInput,
+        MatNativeDateModule,
+        ReactiveFormsModule,
+        CatalogModule
+    ],
   providers: [
     MatDatepickerModule,
   ]

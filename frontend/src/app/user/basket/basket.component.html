@@ -1,0 +1,4 @@
+<h1>Текущая корзина</h1>
+<app-book-list [books]="books" *ngIf="books"></app-book-list>
+<div *ngIf="!books"> Корзина пуста</div>
+<h2>Общая стоимость: {{totalPrice}}₽ </h2>

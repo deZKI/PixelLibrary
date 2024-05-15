@@ -12,18 +12,21 @@ import { BookPurchaseCardComponent } from './book-purchase-card/book-purchase-ca
 
 
 @NgModule({
-  declarations: [
-    BookCardComponent,
-    CatalogComponent,
-    BookListComponent,
-    BookComponent,
-    BookPurchaseCardComponent,
-  ],
-  imports: [
-    CommonModule,
-    CatalogRoutingModule,
-    MatIcon,
-    CommentListComponent,
-  ]
+    declarations: [
+        BookCardComponent,
+        CatalogComponent,
+        BookListComponent,
+        BookComponent,
+        BookPurchaseCardComponent,
+    ],
+    exports: [
+        BookListComponent
+    ],
+    imports: [
+        CommonModule,
+        CatalogRoutingModule,
+        MatIcon,
+        CommentListComponent,
+    ]
 })
 export class CatalogModule { }

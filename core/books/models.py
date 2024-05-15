@@ -23,7 +23,7 @@ class Books(models.Model):
     authors = models.ManyToManyField(to=Authors, related_name='books')
     tags = models.ManyToManyField(to=Tags, related_name='books')
     release_date = models.DateField(null=False, blank=False)
-    price = models.DecimalField(max_digits=10, default=0, decimal_places=2)
+    price = models.IntegerField(default=0)
     page_count = models.IntegerField(default=0)
 
     class Meta:

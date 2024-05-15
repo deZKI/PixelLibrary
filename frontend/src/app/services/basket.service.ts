@@ -14,8 +14,8 @@ export class BasketService {
   constructor(private http: HttpClient) {
   }
 
-  getBaskets(): Observable<Book[]> {
-    return this.http.get<Book[]>(this.apiBaskets);
+  getBaskets(): Observable<UserItemResponse[]> {
+    return this.http.get<UserItemResponse[]>(this.apiBaskets);
   }
 
   getBasketById(id: number): Observable<BookDetail> {
