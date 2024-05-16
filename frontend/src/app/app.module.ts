@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {AppRoutingModule} from './app-routing.module';
@@ -13,32 +13,46 @@ import {provideAnimationsAsync} from '@angular/platform-browser/animations/async
 import {AuthInterceptor} from "./auth.interceptor";
 import {AuthGuard} from "./auth.guard";
 import {AuthService} from "./services/auth.service";
+import {UserService} from "./services/user.service";
+
+export function initializeApp(userService: UserService, authService: AuthService): () => Promise<void> {
+  if (authService.isAuthenticated()) {
+    return () => userService.initializeUser();
+  }
+  return () => Promise.resolve();
+}
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        NavBarComponent,
-        FooterComponent,
-    ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        MatButtonModule,
-        MatDialogModule,
-        MatIconModule,
-        HttpClientModule
-    ],
-    providers: [
-        AuthService,
-        AuthGuard,
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: AuthInterceptor,
-            multi: true
-        },
-        provideAnimationsAsync()
-    ],
-    bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    NavBarComponent,
+    FooterComponent,
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatIconModule,
+    HttpClientModule
+  ],
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeApp,
+      deps: [UserService, AuthService],
+      multi: true
+    },
+    AuthService,
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+    provideAnimationsAsync()
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }

@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
 import {environment} from "../../enviroments/environment";
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {lastValueFrom, Observable} from "rxjs";
 import {UserDetail} from "../shared/interfaces/user.interfaces";
 import {tap} from "rxjs/operators";
+import {AuthService} from "./auth.service";
 
 @Injectable({
   providedIn: 'root'
@@ -26,5 +27,8 @@ export class UserService {
     return this.http.patch<UserDetail>(this.apiUsers + user.id + '/', user);
   }
 
-
+  initializeUser(): Promise<void> {
+    return lastValueFrom(this.getCurrenUser()).then(() => {}).catch(() => {
+    });
+  }
 }

@@ -1,1 +1,9 @@
-<p>comment-form works!</p>
+<form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="comment">Комментарий</label>
+    <textarea id="comment" formControlName="text"></textarea>
+  </div>
+  <div>
+    <button type="submit" [disabled]="commentForm.invalid">Добавить комментарий</button>
+  </div>
+</form>

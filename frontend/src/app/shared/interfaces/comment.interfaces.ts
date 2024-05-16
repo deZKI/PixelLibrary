@@ -12,5 +12,14 @@ export interface CommentBase {
 
 
 export interface BookComment extends CommentBase {
+  book: number
+}
 
+export interface CommentCreation {
+  text: string
+  rating: number
+}
+
+export interface BookCommentCreation extends CommentCreation{
+  book: number
 }
