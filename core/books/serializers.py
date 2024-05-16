@@ -14,6 +14,16 @@ class BookCommentSerializer(ModelSerializer):
         fields = ['id', 'user', 'text', 'created_at', 'edited_at', 'rating', 'edited']
 
 
+class BookCommentCreationSerializer(ModelSerializer):
+    user = HiddenField(
+        default=CurrentUserDefault()
+    )
+
+    class Meta:
+        model = BookComment
+        fields = ['id', 'user', 'text', 'created_at', 'edited_at', 'rating', 'edited']
+
+
 class AuthorsSerializer(ModelSerializer):
     class Meta:
         model = Authors

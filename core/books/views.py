@@ -9,7 +9,8 @@ from rest_framework.viewsets import ReadOnlyModelViewSet, ModelViewSet
 
 from .models import Books, Tags, BasketItem, WishItem, BookComment
 from .serializers import BooksSerializer, TagsSerializer, BooksDetailSerializer, BasketItemSerializer, \
-    WishItemSerializer, WishItemCreationSerializer, BasketItemCreationSerializer, BookCommentSerializer
+    WishItemSerializer, WishItemCreationSerializer, BasketItemCreationSerializer, BookCommentSerializer, \
+    BookCommentCreationSerializer
 
 
 class BooksViewSet(ReadOnlyModelViewSet):
@@ -104,3 +105,8 @@ class BookCommentView(CommentBaseView):
     queryset = BookComment.objects.all()
     serializer_class = BookCommentSerializer
     permission_classes = [permissions.IsAuthenticated]
+
+    def get_serializer_class(self):
+        if self.action == 'create':
+            return BookCommentCreationSerializer
+        return self.serializer_class
