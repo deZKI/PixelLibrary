@@ -9,6 +9,7 @@ import { BookComponent } from './book/book.component';
 import {CommentListComponent} from "../components/comment-list/comment-list.component";
 import { BookPurchaseCardComponent } from './book-purchase-card/book-purchase-card.component';
 import {CommentFormComponent} from "../components/comment-form/comment-form.component";
+import {CommentComponent} from "../components/comment/comment.component";
 
 
 
@@ -29,6 +30,7 @@ import {CommentFormComponent} from "../components/comment-form/comment-form.comp
     MatIcon,
     CommentListComponent,
     CommentFormComponent,
+    CommentComponent,
   ]
 })
 export class CatalogModule { }

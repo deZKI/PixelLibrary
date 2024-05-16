@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {CommentBase} from "../../shared/interfaces/comment.interfaces";
 import {CommentComponent} from "../comment/comment.component";
 import {NgForOf, NgIf} from "@angular/common";
@@ -16,4 +16,9 @@ import {NgForOf, NgIf} from "@angular/common";
 })
 export class CommentListComponent {
   @Input() comments!: CommentBase[]
+  @Output() commentDeleted = new EventEmitter<number>();
+
+  removeComment(commentId: number) {
+    this.commentDeleted.emit(commentId);
+  }
 }

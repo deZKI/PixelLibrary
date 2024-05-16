@@ -16,4 +16,8 @@
   <div class="comment__description">
     {{ comment.text }}
   </div>
+
+  <div *ngIf="isUserComment()" class="comment__remove-button">
+    <button (click)="deleteComment()">Удалить</button>
+  </div>
 </div>

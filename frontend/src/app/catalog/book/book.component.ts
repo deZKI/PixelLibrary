@@ -4,7 +4,9 @@ import {ActivatedRoute} from "@angular/router";
 import {BookService} from "../../services/book.service";
 import {switchMap, take, takeUntil, tap} from "rxjs/operators";
 import {Subject} from "rxjs";
-import {BookComment} from "../../shared/interfaces/comment.interfaces";
+import {BookComment, CommentBase} from "../../shared/interfaces/comment.interfaces";
+import {User} from "../../shared/interfaces/user.interfaces";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-book',
@@ -18,7 +20,8 @@ export class BookComponent implements OnInit, OnDestroy {
   bookId!: number
 
   constructor(private route: ActivatedRoute,
-              private bookService: BookService) {
+              private bookService: BookService,
+              private userService: UserService) {
   }
 
   ngOnDestroy() {
@@ -45,5 +48,13 @@ export class BookComponent implements OnInit, OnDestroy {
 
   addComment(comment: BookComment) {
     this.book.comments.push(comment);
+  }
+
+  hasUserComment() {
+    return this.book.comments.filter(comment => comment.user.id == this.userService.user?.id).length == 1
+  }
+
+  removeComment(commentId: number) {
+    this.book.comments = this.book.comments.filter((comment: CommentBase) => comment.id !== commentId);
   }
 }

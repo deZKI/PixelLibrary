@@ -45,6 +45,6 @@
     </div>
   </div>
 </div>
-<app-comment-list *ngIf="book" [comments]="book.comments"></app-comment-list>
-<app-comment-form [entityId]="bookId" (commentAdded)="addComment($event)" *ngIf="book"></app-comment-form>
+<app-comment-list *ngIf="book"  (commentDeleted)="removeComment($event)" [comments]="book.comments"></app-comment-list>
+<app-comment-form [entityId]="bookId"  (commentAdded)="addComment($event)" *ngIf="book && !hasUserComment()"></app-comment-form>
 <app-book-list [title]="'Похожие книги'" [books]="similarBooks"></app-book-list>

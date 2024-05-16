@@ -17,4 +17,8 @@ export class CommentService {
     return this.http.post<BookComment>(this.apiBookUrl, comment);
   }
 
+  deleteComment(id: number) {
+    return this.http.delete(this.apiBookUrl + id + '/')
+  }
+
 }
