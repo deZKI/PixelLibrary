@@ -11,7 +11,7 @@ class BookCommentSerializer(ModelSerializer):
 
     class Meta:
         model = BookComment
-        fields = ['id', 'user', 'text', 'created_at', 'edited_at', 'rating', 'edited']
+        fields = ['id', 'user', 'book', 'text', 'created_at', 'edited_at', 'rating', 'edited']
 
 
 class BookCommentCreationSerializer(ModelSerializer):
@@ -21,7 +21,7 @@ class BookCommentCreationSerializer(ModelSerializer):
 
     class Meta:
         model = BookComment
-        fields = ['id', 'user', 'text', 'created_at', 'edited_at', 'rating', 'edited']
+        fields = ['id', 'user', 'book', 'text', 'created_at', 'edited_at', 'rating', 'edited']
 
 
 class AuthorsSerializer(ModelSerializer):
