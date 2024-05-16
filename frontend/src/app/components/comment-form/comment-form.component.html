@@ -1,9 +1,23 @@
-<form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
-  <div>
-    <label for="comment">Комментарий</label>
-    <textarea id="comment" formControlName="text"></textarea>
-  </div>
-  <div>
-    <button type="submit" [disabled]="commentForm.invalid">Добавить комментарий</button>
-  </div>
-</form>
+<mat-card>
+  <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Комментарий</mat-label>
+      <textarea matInput formControlName="text" placeholder="Введите ваш комментарий" rows="4"></textarea>
+      <mat-error *ngIf="commentForm.hasError('required')">
+        Комментарий обязателен
+      </mat-error>
+      <mat-error *ngIf="commentForm.hasError('maxlength')">
+        Комментарий не может быть длиннее 500 символов
+      </mat-error>
+    </mat-form-field>
+    <div class="star-rating-container">
+      <label>Оценка:</label>
+      <app-star-rating [(rating)]="rating"></app-star-rating>
+    </div>
+    <div class="button-container">
+      <button mat-raised-button color="primary" type="submit" [disabled]="commentForm.invalid">
+        Добавить комментарий
+      </button>
+    </div>
+  </form>
+</mat-card>

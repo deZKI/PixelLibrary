@@ -14,6 +14,7 @@ import {AuthInterceptor} from "./auth.interceptor";
 import {AuthGuard} from "./auth.guard";
 import {AuthService} from "./services/auth.service";
 import {UserService} from "./services/user.service";
+import { StarRatingComponent } from './components/star-rating/star-rating.component';
 
 export function initializeApp(userService: UserService, authService: AuthService): () => Promise<void> {
   if (authService.isAuthenticated()) {

@@ -1,0 +1,19 @@
+.full-width {
+  width: 100%;
+}
+
+.star-rating-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+
+  label {
+    margin-right: 1rem;
+  }
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}

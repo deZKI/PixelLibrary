@@ -1,0 +1,18 @@
+.star-rating {
+  display: flex;
+  cursor: pointer;
+
+  mat-icon {
+    font-size: 30px;
+    color: #d3d3d3;
+
+    &.active {
+      color: #ffca28;
+    }
+
+    &:hover,
+    &:hover ~ mat-icon {
+      color: #ffca28;
+    }
+  }
+}

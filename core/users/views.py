@@ -62,8 +62,9 @@ class UsersDetailView(ModelViewSet):
 
     )
     @action(detail=False, methods=['get'], url_path='me')
-    def booking_dates_by_room(self, request):
-
+    def current_user(self, request):
+        if not self.request.user.is_authenticated:
+            Response(401, "Unauthorized")
         serializer = UserDetailSerializer(self.request.user)
 
         return Response(serializer.data)
