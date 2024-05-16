@@ -100,6 +100,16 @@ class CommentBaseView(ModelViewSet):
             raise PermissionDenied("Вы не можете удалять комментарии других пользователей.")
         instance.delete()
 
+    def create(self, request, *args, **kwargs):
+        # Создаем объект с использованием сериализатора для создания
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+
+        # После создания объекта используем другой сериализатор для формирования ответа
+        read_serializer = self.serializer_class(serializer.instance)
+        return Response(read_serializer.data, status=status.HTTP_201_CREATED)
+
 
 class BookCommentView(CommentBaseView):
     queryset = BookComment.objects.all()
