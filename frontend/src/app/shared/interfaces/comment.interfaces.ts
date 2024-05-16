@@ -1,7 +1,7 @@
 import {User} from "./user.interfaces";
 
 export interface CommentBase {
-  id: number
+  id?: number
   user: User
   text: string
   created_at: string

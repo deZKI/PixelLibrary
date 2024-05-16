@@ -15,30 +15,30 @@ import {AuthGuard} from "./auth.guard";
 import {AuthService} from "./services/auth.service";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavBarComponent,
-    FooterComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    MatButtonModule,
-    MatDialogModule,
-    MatIconModule,
-    HttpClientModule
-  ],
-  providers: [
-    AuthService,
-    AuthGuard,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true
-    },
-    provideAnimationsAsync()
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        NavBarComponent,
+        FooterComponent,
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        MatButtonModule,
+        MatDialogModule,
+        MatIconModule,
+        HttpClientModule
+    ],
+    providers: [
+        AuthService,
+        AuthGuard,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptor,
+            multi: true
+        },
+        provideAnimationsAsync()
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
 }

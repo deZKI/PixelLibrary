@@ -4,6 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {BookService} from "../../services/book.service";
 import {switchMap, take, takeUntil, tap} from "rxjs/operators";
 import {Subject} from "rxjs";
+import {BookComment} from "../../shared/interfaces/comment.interfaces";
 
 @Component({
   selector: 'app-book',
@@ -40,5 +41,9 @@ export class BookComponent implements OnInit, OnDestroy {
       }),
       takeUntil(this.destroy$) // Прекращаем подписку при вызове destroy$
     ).subscribe();
+  }
+
+  addComment(comment: BookComment) {
+    this.book.comments.push(comment);
   }
 }

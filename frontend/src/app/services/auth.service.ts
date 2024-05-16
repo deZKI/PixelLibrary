@@ -1,9 +1,11 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Observable, switchMap, throwError} from 'rxjs';
+import {tap} from 'rxjs/operators';
 import {AuthResponse} from "../shared/interfaces/auth.interfaces";
 import {environment} from "../../enviroments/environment";
+import {UserService} from "./user.service";
+import {UserDetail} from "../shared/interfaces/user.interfaces";
 
 @Injectable({
   providedIn: 'root'
@@ -13,23 +15,26 @@ export class AuthService {
   private accessTokenKey = 'access';
   private refreshTokenKey = 'refresh';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private userService: UserService) {
+  }
 
-  login(email: string, password: string): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.apiUrl}/login/`, { email, password })
+  login(email: string, password: string): Observable<UserDetail> {
+    return this.http.post<AuthResponse>(`${this.apiUrl}/login/`, {email, password})
       .pipe(
         tap(response => {
           this.saveTokens(response.access, response.refresh);
-        })
+        }),
+        switchMap(_ => this.userService.getCurrenUser())
       );
   }
 
-  register(email: string, password: string): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.apiUrl}/registration/`, { email, password })
+  register(email: string, password: string): Observable<UserDetail> {
+    return this.http.post<AuthResponse>(`${this.apiUrl}/registration/`, {email, password})
       .pipe(
         tap(response => {
           this.saveTokens(response.access, response.refresh);
-        })
+        }),
+        switchMap(_ => this.userService.getCurrenUser())
       );
   }
 
@@ -39,7 +44,7 @@ export class AuthService {
       return throwError('No refresh token found');
     }
 
-    return this.http.post<AuthResponse>(`${this.apiUrl}/token/refresh/`, { refresh: refreshToken })
+    return this.http.post<AuthResponse>(`${this.apiUrl}/token/refresh/`, {refresh: refreshToken})
       .pipe(
         tap(response => {
           this.saveTokens(response.access, refreshToken);
