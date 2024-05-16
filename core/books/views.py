@@ -6,10 +6,9 @@ from rest_framework.response import Response
 from rest_framework import status, permissions
 from rest_framework.viewsets import ReadOnlyModelViewSet, ModelViewSet
 
-from users.models import BasketItem, WishItem
-from .models import Books, Tags
+from .models import Books, Tags, BasketItem, WishItem, BookComment
 from .serializers import BooksSerializer, TagsSerializer, BooksDetailSerializer, BasketItemSerializer, \
-    WishItemSerializer, WishItemCreationSerializer, BasketItemCreationSerializer
+    WishItemSerializer, WishItemCreationSerializer, BasketItemCreationSerializer, BookCommentSerializer
 
 
 class BooksViewSet(ReadOnlyModelViewSet):
@@ -77,3 +76,8 @@ class BasketItemViewSet(UserItemViewSet):
         if self.action == 'create':
             return BasketItemCreationSerializer
         return BasketItemSerializer
+
+
+class BookCommentView(ModelViewSet):
+    queryset = BookComment
+    serializer_class = BooksSerializer

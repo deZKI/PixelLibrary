@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Users, BookComment
+from .models import Users
 
 
 class UsersRegistrationSerializer(serializers.ModelSerializer):
@@ -29,11 +29,3 @@ class UserDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Users
         fields = ['id', 'first_name', 'last_name', 'email', 'patronymic', 'birthday_date', 'phone_number']
-
-
-class BookCommentSerializer(serializers.ModelSerializer):
-    user = UserSerializer()
-
-    class Meta:
-        model = BookComment
-        fields = ['id', 'user', 'text', 'created_at', 'edited_at', 'rating', 'edited']

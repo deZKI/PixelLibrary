@@ -3,21 +3,10 @@ from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import gettext_lazy as _
 
-from users.models import AuthComment, BookComment, Users, WishItem, BasketItem
+from books.admin import WishItemTabAdmin, BasketItemTabAdmin
+from books.models import Users
 
 admin.site.unregister(Group)
-
-
-class WishItemTabAdmin(admin.TabularInline):
-    model = WishItem
-    fields = ['book']
-    extra = 0
-
-
-class BasketItemTabAdmin(admin.TabularInline):
-    model = BasketItem
-    fields = ['book']
-    extra = 0
 
 
 @admin.register(Users)
@@ -60,15 +49,3 @@ class UsersAdmin(UserAdmin):
     )
 
     inlines = [WishItemTabAdmin, BasketItemTabAdmin]
-
-
-@admin.register(BookComment)
-class BookCommentAdmin(admin.ModelAdmin):
-    """ BookComment """
-    pass
-
-
-@admin.register(AuthComment)
-class AuthCommentAdmin(admin.ModelAdmin):
-    """ AuthComment """
-    pass

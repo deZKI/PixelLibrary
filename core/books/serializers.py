@@ -2,9 +2,16 @@ from rest_framework.serializers import ModelSerializer, FloatField, HiddenField,
     PrimaryKeyRelatedField, SerializerMethodField
 
 from services.permissions import BookPermissionsService
-from books.models import Books, Authors, Tags
-from users.serializers import BookCommentSerializer
-from users.models import BasketItem, WishItem
+from books.models import Books, Authors, Tags, BasketItem, WishItem, BookComment
+from users.serializers import UserSerializer
+
+
+class BookCommentSerializer(ModelSerializer):
+    user = UserSerializer()
+
+    class Meta:
+        model = BookComment
+        fields = ['id', 'user', 'text', 'created_at', 'edited_at', 'rating', 'edited']
 
 
 class AuthorsSerializer(ModelSerializer):
