@@ -11,7 +11,7 @@ from rest_framework_simplejwt.views import (
     TokenVerifyView,
 )
 
-from books.views import BooksViewSet, TagsViewSet, WishItemViewSet, BasketItemViewSet
+from books.views import BooksViewSet, TagsViewSet, WishItemViewSet, BasketItemViewSet, BookCommentView
 from users.views import UserRegistrationAPIView, UsersDetailView
 
 schema_view = get_schema_view(
@@ -29,6 +29,7 @@ router.register(r'tags', TagsViewSet, basename='tags')
 router.register(r'users', UsersDetailView, basename='users')
 router.register(r'wishes', WishItemViewSet, basename='wishes')
 router.register(r'baskets', BasketItemViewSet, basename='baskets')
+router.register(r'bcomment', BookCommentView, basename='bcomment')
 urlpatterns = [
     path('api/', include(router.urls)),
 

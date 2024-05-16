@@ -1,6 +1,7 @@
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
 from django.db.models import Avg
+from rest_framework.exceptions import PermissionDenied
 
 from rest_framework.response import Response
 from rest_framework import status, permissions
@@ -78,6 +79,28 @@ class BasketItemViewSet(UserItemViewSet):
         return BasketItemSerializer
 
 
-class BookCommentView(ModelViewSet):
-    queryset = BookComment
-    serializer_class = BooksSerializer
+class CommentBaseView(ModelViewSet):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return self.queryset.filter(user=self.request.user)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+    def perform_update(self, serializer):
+        obj = serializer.instance
+        if obj.user != self.request.user:
+            raise PermissionDenied("Вы не можете изменять комментарии других пользователей.")
+        serializer.save()
+
+    def perform_destroy(self, instance):
+        if instance.user != self.request.user:
+            raise PermissionDenied("Вы не можете удалять комментарии других пользователей.")
+        instance.delete()
+
+
+class BookCommentView(CommentBaseView):
+    queryset = BookComment.objects.all()
+    serializer_class = BookCommentSerializer
+    permission_classes = [permissions.IsAuthenticated]
