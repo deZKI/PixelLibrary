@@ -23,7 +23,6 @@ dp = Dispatcher()
 @dp.message(Command("start"))
 async def echo_message(msg: types.Message):
     print(msg.chat.id)
-    await msg.answer(msg.chat.id)
 
 
 async def on_startup(loop):
