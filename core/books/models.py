@@ -1,8 +1,12 @@
+import json
+
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
 from authors.models import Authors
 from users.models import Users
+
+from rabbitmq.notification import send_booking_notification
 
 
 class Tags(models.Model):
@@ -102,6 +106,20 @@ class BasketItem(models.Model):
         verbose_name = 'Корзина'
         verbose_name_plural = 'Корзина'
         unique_together = ('user', 'book')
+
+    def save(
+            self, force_insert=False, force_update=False, using=None, update_fields=None
+    ):
+        self.clean()
+        message = json.dumps({
+            'user_id': self.user.id,
+            'book_id': self.book_id,
+            'text': f"Корзина для {self.user.email} | книга: {self.book.title}"
+        })
+        send_booking_notification(message)
+
+        super(BasketItem, self).save(force_insert, force_update, using,
+                                     update_fields)  # Вызов оригинального метода save
 
     def __str__(self):
         return f'Корзина для {self.user.email} | книга: {self.book.title}'
