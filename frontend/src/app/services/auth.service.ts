@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable, switchMap, throwError} from 'rxjs';
 import {tap} from 'rxjs/operators';
-import {AuthResponse} from "../shared/interfaces/auth.interfaces";
+import {AuthResponse, RegisterResponse} from "../shared/interfaces/auth.interfaces";
 import {environment} from "../../enviroments/environment";
 import {UserService} from "./user.service";
 import {UserDetail} from "../shared/interfaces/user.interfaces";
@@ -12,6 +12,7 @@ import {UserDetail} from "../shared/interfaces/user.interfaces";
 })
 export class AuthService {
   private apiUrl = `${environment.apiUrl}/auth`
+  public loginUrl = `${this.apiUrl}/login/`
   private accessTokenKey = 'access';
   private refreshTokenKey = 'refresh';
 
@@ -19,7 +20,7 @@ export class AuthService {
   }
 
   login(email: string, password: string): Observable<UserDetail> {
-    return this.http.post<AuthResponse>(`${this.apiUrl}/login/`, {email, password})
+    return this.http.post<AuthResponse>(`${this.loginUrl}`, {email, password})
       .pipe(
         tap(response => {
           this.saveTokens(response.access, response.refresh);
@@ -28,14 +29,8 @@ export class AuthService {
       );
   }
 
-  register(email: string, password: string): Observable<UserDetail> {
-    return this.http.post<AuthResponse>(`${this.apiUrl}/registration/`, {email, password})
-      .pipe(
-        tap(response => {
-          this.saveTokens(response.access, response.refresh);
-        }),
-        switchMap(_ => this.userService.getCurrenUser())
-      );
+  register(email: string, password: string): Observable<RegisterResponse> {
+    return this.http.post<RegisterResponse>(`${this.apiUrl}/registration/`, {email, password});
   }
 
   refreshAccessToken(): Observable<AuthResponse> {

@@ -2,14 +2,17 @@
   <div class="login-register-header">
     <h1 *ngIf="isLoginMode">Войти в аккаунт</h1>
     <h1 *ngIf="!isLoginMode">Регистрация</h1>
-    <div class="login-register__xmark">
+    <div class="login-register__xmark" (click)="dialogRef.close()">
       <mat-icon svgIcon="xmark"></mat-icon>
     </div>
   </div>
 
   <div class="login-register-inputs">
     <input class="login-register-inputs__input" name="email" [(ngModel)]="email" placeholder="Почта" required>
+    <div class="error-message" *ngIf="fieldErrors['email']">{{ fieldErrors['email'][0] }}</div>
+
     <input class="login-register-inputs__input" type="password" [(ngModel)]="password" placeholder="Пароль" required>
+    <div class="error-message" *ngIf="fieldErrors['password']">{{ fieldErrors['password'][0] }}</div>
 
     <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
 
@@ -39,4 +42,3 @@
     </button>
   </div>
 </div>
-

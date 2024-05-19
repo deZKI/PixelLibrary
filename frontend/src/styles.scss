@@ -55,6 +55,9 @@ body {
     width: 60px;
     height: 45px;
   }
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 html, body {
