@@ -3,3 +3,4 @@
 core/.idea
 nginx/certs
 __pycache__
+venv

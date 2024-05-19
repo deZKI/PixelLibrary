@@ -22,8 +22,10 @@ services:
 
   frontend:
     build: frontend
-    ports:
-      - "4200:4200"
+    volumes:
+      - angular-build_volume:/app/dist
+    command: npm run build --prod
+
 
   telegram_bot:
     build: telegram_bot
@@ -50,6 +52,7 @@ services:
     volumes:
       - static_volume:/app/static
       - media_volume:/app/media
+      - angular-build_volume:/usr/share/nginx/html
     depends_on:
       - core
 
@@ -83,3 +86,4 @@ volumes:
   postgres_data:
   static_volume:
   media_volume:
+  angular-build_volume:
