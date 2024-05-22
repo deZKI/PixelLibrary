@@ -1,9 +1,9 @@
-<div class="book-card">
+<div class="book-card" (click)="navigateToBookDetail()">
   <div class="book-card__image">
     <img [src]="book.thumbnail">
   </div>
 
-  <div class="book-card__title" (click)="navigateToBookDetail()">
+  <div class="book-card__title">
     {{book.title}}
   </div>
 

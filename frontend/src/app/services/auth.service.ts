@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable, switchMap, throwError} from 'rxjs';
 import {tap} from 'rxjs/operators';
 import {AuthResponse, RegisterResponse} from "../shared/interfaces/auth.interfaces";
-import {environment} from "../../enviroments/environment";
+import {environment} from "../../environments/environment";
 import {UserService} from "./user.service";
 import {UserDetail} from "../shared/interfaces/user.interfaces";
 

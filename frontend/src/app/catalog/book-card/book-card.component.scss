@@ -9,6 +9,9 @@
   padding: 20px;
   width: 200px;
 
+  &:hover {
+      cursor: pointer;
+  }
   &__image {
     height: 226px;
     max-width: 148px;
@@ -26,9 +29,6 @@
     margin-bottom: 8px;
     height: 30px;
 
-    &:hover {
-      cursor: pointer;
-    }
   }
 
   &__authors {
